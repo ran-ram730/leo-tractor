@@ -3,189 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leo Tractor - खेती के लिए संपर्क करें</title>
+    <title>Name Search Engine - केवल इलाका पूछें</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            background: rgba(255,255,255,0.95);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
-        }
-        .logo {
-            font-size: 3em;
-            color: #FF5722;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
-        }
-        .tagline {
-            font-size: 1.5em;
-            color: #4CAF50;
-            font-weight: bold;
-        }
-        .main-content {
-            background: rgba(255,255,255,0.95);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        .contact-box {
-            background: linear-gradient(45deg, #FF9800, #FF5722);
-            color: red;
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
-            margin: 30px 0;
-            box-shadow: 0 10px 40px rgba(255,152,0,0.3);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
         }
-        .owner-name {vinay}
-            font-size: 2em;
-            color: #FFF;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        .phone {8318549788}
-            font-size: 3em;
-            font-weight: bold;
-            color: #FFF;
-            text-decoration: none;
-            display: inline-block;
-            padding: 15px 30px;
-            border: 3px solid #FFF;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            margin: 20px 0;
-        }
-        .phone:hover {
-            background: #FFF;
-            color: #FF5722;
-            transform: scale(1.05);
-        }
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 40px 0;
-        }
-        .feature {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-        .feature:hover {
-            transform: translateY(-10px);
-        }
-        .feature h3 {
-            color: #2196F3;
+
+        h1 {
+            color: #333;
             margin-bottom: 10px;
+            font-size: 2.5em;
         }
-        .address {
-            background: #E8F5E8;
-            padding: 25px;
-            border-radius: 15px;
-            margin-top: 30px;
-            border-left: 5px solid #4CAF50;
+
+        .tagline {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
         }
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            font-size: 1.5em;
+
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 18px 20px 18px 60px;
+            font-size: 18px;
+            border: 3px solid #e1e5e9;
+            border-radius: 50px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .mic-btn {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
             border: none;
+            font-size: 24px;
+            color: #667eea;
+            cursor: pointer;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
             border-radius: 50px;
             cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            margin: 10px;
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease;
+            margin-top: 10px;
         }
-        .btn-whatsapp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(37,211,102,0.4);
+
+        .search-btn:hover {
+            transform: translateY(-2px);
         }
-        @media (max-width: 768px) {
-            .logo { font-size: 2em; }
-            .phone { font-size: 2em; }
-            .owner-name { font-size: 1.5em; }
-            .main-content { padding: 20px; }
+
+        .rules {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .rules h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            display: none;
+        }
+
+        .loading {
+            display: none;
+            color: #667eea;
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="logo">🚜 LEO TRACTOR</div>
-            <div class="tagline">आटोमेटिक मल्टीटास्क खेती मशीन</div>
-        </header>
-
-        <div class="main-content">
-            <h1 style="color: #2196F3; font-size: 2.5em; margin-bottom: 20px;">
-                🌾 खेती के लिए संपर्क करें 🌾
-            </h1>
-            
-            <div class="contact-box">
-                <div class="owner-name">👨‍🌾 विनय वर्मा जी</div>
-                <a href="tel:+918318549788" class="phone">📞 8318 549788</a>
-                <p style="font-size: 1.2em; margin-top: 20px;">
-                    फरवरी से शुरू - सीट से ऑटोमेटिक खेती
-                </p>
-            </div>
-
-            <div class="features">
-                <div class="feature">
-                    <h3>🚀 ऑटोमेटिक सिस्टम</h3>
-                    <p>सीट से ही पूरी खेती - कोई मेहनत नहीं!</p>
-                </div>
-                <div class="feature">
-                    <h3>⚡ मल्टीटास्क</h3>
-                    <p>एक ट्रैक्टर - सभी काम!</p>
-                </div>
-                <div class="feature">
-                    <h3>✅ फरवरी से चालू</h3>
-                    <p>देखें लाइव डेमो और शुरू करें!</p>
-                </div>
-            </div>
-
-            <div class="address">
-                <h3 style="color: #4CAF50; margin-bottom: 15px;">📍 पता:</h3>
-                <p><strong>Village Machauchi Zaidpur Barabanki</strong></strong></p>
-            </div>
-
-            <div style="margin-top: 30px;">
-                <a href="https://wa.me/918318549788?text=Leo%20Tractor%20के%20बारे%20में%20जानना%20चाहते%20हैं" 
-                   class="btn-whatsapp" target="_blank">
-                    💬 WhatsApp पर बात करें
-                </a>
-                <a href="tel:+918318549788" class="btn-whatsapp">
-                    📞 अभी कॉल करें
-                </a>
-            </div>
+        <h1>🏠 Name Search Engine</h1>
+        <p class="tagline">केवल इलाका (गाँव/शहर) के बारे में पूछें</p>
+        
+        <div class="search-box">
+            <button class="mic-btn" onclick="startVoiceSearch()" title="Voice Search">🎤</button>
+            <input type="text" id="searchInput" placeholder="अपना इलाका बताएं... (जैसे: रामपुर गाँव, उत्तर प्रदेश)" autocomplete="off">
         </div>
-
-        <footer style="text-align: center; margin-top: 40px; color: white; font-size: 1.1em;">
-            <p>© 2026Leo Tractor - विनय वर्मा | मचौची, जयपुर, बाराबंकी</p>
-        </footer>
+        
+        <button class="search-btn" onclick="searchVillage()">खोजें</button>
+        
+        <div class="loading" id="loading">🔍 खोज रहे हैं...</div>
+        
+        <div class="result" id="result">
+            <h3>परिणाम:</h3>
+            <p id="resultText"></p>
+        </div>
+        
+        <div class="rules">
+            <h3>⚠️ नियम:</h3>
+            <ul style="text-align: left; margin-top: 10px;">
+                <li>✅ केवल गाँव/शहर/इलाका के बारे में पूछें</li>
+                <li>❌ व्यक्तिगत जानकारी न पूछें</li>
+                <li>❌ नाम या नंबर न खोजें</li>
+                <li>✅ स्थान संबंधी जानकारी ही उपलब्ध</li>
+            </ul>
+        </div>
     </div>
+
+    <script>
+        // Demo village data (Indian villages/towns)
+        const villageData = {
+            "rampur": "रामपुर गाँव - उत्तर प्रदेश के एक प्रसिद्ध गाँव। यहाँ कृषि मुख्य व्यवसाय है।",
+            "मुंबई": "मुंबई - महाराष्ट्र की राजधानी, बॉलीवुड और व्यापार का केंद्र।",
+            "दिल्ली": "दिल्ली - भारत की राजधानी, ऐतिहासिक और आधुनिक शहर।",
+            "जयपुर": "जयपुर - राजस्थान का गुलाबी शहर, पर्यटन का प्रमुख केंद्र।",
+            "गोवा": "गोवा - समुद्र तटों और पर्यटन के लिए प्रसिद्ध।",
+            "केरल": "केरल - हरे-भरे खेतों और बैकवाटर्स के लिए जाना जाता है।"
+        };
+
+        function searchVillage() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!query) {
+                alert('कृपया इलाका का नाम लिखें!');
+                return;
+            }
+
+            showLoading(true);
+            document.getElementById('result').style.display = 'none';
+
+            // Simulate search delay
+            setTimeout(() => {
+                showLoading(false);
+                
+                let result = "क्षमा करें, इस इलाके की जानकारी उपलब्ध नहीं है।";
+                
+                // Check if query matches any village
+                for (let village in villageData) {
+                    if (query.includes(village) || village.includes(query)) {
+                        result = villageData[village];
+                        break;
+                    }
+                }
+
+                if (query.includes('गाँव') || query.includes('village')) {
+                    result = "भारत में 6 लाख+ गाँव हैं। अधिक विशिष्ट जानकारी के लिए गाँव का नाम और राज्य बताएं।";
+                }
+
+                displayResult(result);
+            }, 1500);
+        }
+
+        function displayResult(text) {
+            document.getElementById('resultText').innerHTML = text;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'block' : 'none';
+        }
+
+        function startVoiceSearch() {
+            if ('webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.lang = 'hi-IN';
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('searchInput').value = transcript;
+                    searchVillage();
+                };
+                
+                recognition.start();
+            } else {
+                alert('आपका ब्राउज़र वॉइस सर्च को सपोर्ट नहीं करता!');
+            }
+        }
+
+        // Enter key support
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchVillage();
+            }
+        });
+
+        // Auto-focus on input
+        window.onload = function() {
+            document.getElementById('searchInput').focus();
+        }
+    </script>
 </body>
 </html>
