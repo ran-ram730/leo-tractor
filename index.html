@@ -1,103 +1,218 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Engine - Barabanki, UP & World Info</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Engine</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
+
+    body{
+      background:#0f172a;
+      color:white;
+    }
+
+    header{
+      background:#111827;
+      padding:20px;
+      text-align:center;
+    }
+
+    header h1{
+      color:#3b82f6;
+      font-size:45px;
+    }
+
+    .hero{
+      text-align:center;
+      padding:80px 20px;
+    }
+
+    .search-box{
+      margin-top:30px;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .search-box input{
+      width:60%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      font-size:18px;
+    }
+
+    .search-box button{
+      padding:15px 25px;
+      border:none;
+      border-radius:10px;
+      background:#2563eb;
+      color:white;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .search-box button:hover{
+      background:#1d4ed8;
+    }
+
+    .result{
+      width:80%;
+      margin:30px auto;
+      background:#1e293b;
+      padding:20px;
+      border-radius:15px;
+      display:none;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:20px;
+      padding:40px;
+    }
+
+    .card{
+      background:#1e293b;
+      padding:20px;
+      border-radius:15px;
+    }
+
+    .card h3{
+      color:#60a5fa;
+      margin-bottom:10px;
+    }
+
+    footer{
+      background:#111827;
+      text-align:center;
+      padding:20px;
+      margin-top:40px;
+    }
+
+  </style>
+
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-container">
-                <div class="logo">
-                    <i class="fas fa-search"></i>
-                    <span>Search Engine</span>
-                </div>
-                <div class="nav-menu">
-                    <a href="#home">Home</a>
-                    <a href="#barabanki">Barabanki</a>
-                    <a href="#up">Uttar Pradesh</a>
-                    <a href="#education">शिक्षा</a>
-                    <a href="#world">विश्व</a>
-                </div>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>कुछ भी खोजें</h1>
-                <p>बाराबंकी के सभी गांव, उत्तर प्रदेश, शिक्षा और विश्व की जानकारी एक जगह</p>
-                <div class="search-box">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" id="searchInput" placeholder="गांव का नाम, शिक्षा, UP info... लिखें">
-                    <button onclick="searchData()"><i class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </section>
+<header>
+  <h1>Search Engine</h1>
+  <p>Duniya ki legal jankari</p>
+</header>
 
-        <!-- Results Section -->
-        <section id="results" class="results-section">
-            <div class="container">
-                <h2>खोज परिणाम</h2>
-                <div id="searchResults"></div>
-            </div>
-        </section>
+<section class="hero">
 
-        <!-- Barabanki Villages -->
-        <section id="barabanki" class="info-section">
-            <div class="container">
-                <h2><i class="fas fa-map-marker-alt"></i> बाराबंकी के गांव</h2>
-                <div class="cards-grid" id="barabankiVillages">
-                    <!-- Villages will load here -->
-                </div>
-            </div>
-        </section>
+  <h2>Kuch bhi poochhiye</h2>
 
-        <!-- Uttar Pradesh -->
-        <section id="up" class="info-section">
-            <div class="container">
-                <h2><i class="fas fa-landmark"></i> उत्तर प्रदेश की जानकारी</h2>
-                <div class="up-info">
-                    <div class="info-card">
-                        <h3>राजधानी</h3>
-                        <p>लखनऊ</p>
-                    </div>
-                    <div class="info-card">
-                        <h3>जनसंख्या</h3>
-                        <p>24 करोड़+ (2023)</p>
-                    </div>
-                    <!-- More UP info -->
-                </div>
-            </div>
-        </section>
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Apna sawal likhiye">
+    <button onclick="searchData()">Search</button>
+  </div>
 
-        <!-- Education -->
-        <section id="education" class="info-section">
-            <div class="container">
-                <h2><i class="fas fa-graduation-cap"></i> शिक्षा की जानकारी</h2>
-                <div class="cards-grid" id="educationInfo">
-                    <!-- Education data will load here -->
-                </div>
-            </div>
-        </section>
-    </main>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Search Engine. केवल कानूनी और शैक्षिक उपयोग के लिए।</p>
-        </div>
-    </footer>
+<div class="result" id="resultBox"></div>
 
-    <script src="script.js"></script>
+<section class="cards">
+
+  <div class="card">
+    <h3>Technology</h3>
+    <p>AI, Coding aur Internet ki jankari.</p>
+  </div>
+
+  <div class="card">
+    <h3>Education</h3>
+    <p>Study aur exams ki jankari.</p>
+  </div>
+
+  <div class="card">
+    <h3>Business</h3>
+    <p>Online earning aur startup ideas.</p>
+  </div>
+
+  <div class="card">
+    <h3>Health</h3>
+    <p>Fitness aur healthy lifestyle tips.</p>
+  </div>
+
+</section>
+
+<footer>
+  © 2026 Search Engine
+</footer>
+
+<script>
+
+function searchData(){
+
+  let input =
+  document.getElementById("searchInput")
+  .value.toLowerCase();
+
+  let result =
+  document.getElementById("resultBox");
+
+  let answer = "";
+
+  if(input.includes("ai")){
+
+    answer =
+    "AI ka matlab Artificial Intelligence hota hai.";
+
+  }
+
+  else if(input.includes("business")){
+
+    answer =
+    "Online business ideas: YouTube, Blogging, Freelancing.";
+
+  }
+
+  else if(input.includes("health")){
+
+    answer =
+    "Healthy rehne ke liye exercise aur proper sleep zaruri hai.";
+
+  }
+
+  else if(input.includes("india")){
+
+    answer =
+    "India ka capital New Delhi hai.";
+
+  }
+
+  else if(input == ""){
+
+    answer =
+    "Kripya koi sawal likhiye.";
+
+  }
+
+  else{
+
+    answer =
+    "Sirf legal aur educational sawalon ke jawab diye jaate hain.";
+
+  }
+
+  result.style.display = "block";
+
+  result.innerHTML =
+  "<h2>Answer</h2><p>"+answer+"</p>";
+
+}
+
+</script>
+
 </body>
-    </html>
+      </html>
