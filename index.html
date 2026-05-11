@@ -3,245 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Name Search Engine - केवल इलाका पूछें</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 500px;
-            width: 90%;
-        }
-
-        h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .tagline {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
-        }
-
-        .search-box {
-            position: relative;
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 18px 20px 18px 60px;
-            font-size: 18px;
-            border: 3px solid #e1e5e9;
-            border-radius: 50px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .mic-btn {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            font-size: 24px;
-            color: #667eea;
-            cursor: pointer;
-        }
-
-        .search-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 18px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        .rules {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 15px;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .rules h3 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .result {
-            margin-top: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            border-left: 5px solid #667eea;
-            display: none;
-        }
-
-        .loading {
-            display: none;
-            color: #667eea;
-            font-size: 18px;
-        }
-
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            .container {
-                padding: 30px 20px;
-            }
-        }
-    </style>
+    <title>Search Engine - Barabanki, UP & World Info</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>🏠 Name Search Engine</h1>
-        <p class="tagline">केवल इलाका (गाँव/शहर) के बारे में पूछें</p>
-        
-        <div class="search-box">
-            <button class="mic-btn" onclick="startVoiceSearch()" title="Voice Search">🎤</button>
-            <input type="text" id="searchInput" placeholder="अपना इलाका बताएं... (जैसे: रामपुर गाँव, उत्तर प्रदेश)" autocomplete="off">
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <i class="fas fa-search"></i>
+                    <span>Search Engine</span>
+                </div>
+                <div class="nav-menu">
+                    <a href="#home">Home</a>
+                    <a href="#barabanki">Barabanki</a>
+                    <a href="#up">Uttar Pradesh</a>
+                    <a href="#education">शिक्षा</a>
+                    <a href="#world">विश्व</a>
+                </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>कुछ भी खोजें</h1>
+                <p>बाराबंकी के सभी गांव, उत्तर प्रदेश, शिक्षा और विश्व की जानकारी एक जगह</p>
+                <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="गांव का नाम, शिक्षा, UP info... लिखें">
+                    <button onclick="searchData()"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section id="results" class="results-section">
+            <div class="container">
+                <h2>खोज परिणाम</h2>
+                <div id="searchResults"></div>
+            </div>
+        </section>
+
+        <!-- Barabanki Villages -->
+        <section id="barabanki" class="info-section">
+            <div class="container">
+                <h2><i class="fas fa-map-marker-alt"></i> बाराबंकी के गांव</h2>
+                <div class="cards-grid" id="barabankiVillages">
+                    <!-- Villages will load here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Uttar Pradesh -->
+        <section id="up" class="info-section">
+            <div class="container">
+                <h2><i class="fas fa-landmark"></i> उत्तर प्रदेश की जानकारी</h2>
+                <div class="up-info">
+                    <div class="info-card">
+                        <h3>राजधानी</h3>
+                        <p>लखनऊ</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>जनसंख्या</h3>
+                        <p>24 करोड़+ (2023)</p>
+                    </div>
+                    <!-- More UP info -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section id="education" class="info-section">
+            <div class="container">
+                <h2><i class="fas fa-graduation-cap"></i> शिक्षा की जानकारी</h2>
+                <div class="cards-grid" id="educationInfo">
+                    <!-- Education data will load here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Search Engine. केवल कानूनी और शैक्षिक उपयोग के लिए।</p>
         </div>
-        
-        <button class="search-btn" onclick="searchVillage()">खोजें</button>
-        
-        <div class="loading" id="loading">🔍 खोज रहे हैं...</div>
-        
-        <div class="result" id="result">
-            <h3>परिणाम:</h3>
-            <p id="resultText"></p>
-        </div>
-        
-        <div class="rules">
-            <h3>⚠️ नियम:</h3>
-            <ul style="text-align: left; margin-top: 10px;">
-                <li>✅ केवल गाँव/शहर/इलाका के बारे में पूछें</li>
-                <li>❌ व्यक्तिगत जानकारी न पूछें</li>
-                <li>❌ नाम या नंबर न खोजें</li>
-                <li>✅ स्थान संबंधी जानकारी ही उपलब्ध</li>
-            </ul>
-        </div>
-    </div>
+    </footer>
 
-    <script>
-        // Demo village data (Indian villages/towns)
-        const villageData = {
-            "rampur": "रामपुर गाँव - उत्तर प्रदेश के एक प्रसिद्ध गाँव। यहाँ कृषि मुख्य व्यवसाय है।",
-            "मुंबई": "मुंबई - महाराष्ट्र की राजधानी, बॉलीवुड और व्यापार का केंद्र।",
-            "दिल्ली": "दिल्ली - भारत की राजधानी, ऐतिहासिक और आधुनिक शहर।",
-            "जयपुर": "जयपुर - राजस्थान का गुलाबी शहर, पर्यटन का प्रमुख केंद्र।",
-            "गोवा": "गोवा - समुद्र तटों और पर्यटन के लिए प्रसिद्ध।",
-            "केरल": "केरल - हरे-भरे खेतों और बैकवाटर्स के लिए जाना जाता है।"
-        };
-
-        function searchVillage() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            
-            if (!query) {
-                alert('कृपया इलाका का नाम लिखें!');
-                return;
-            }
-
-            showLoading(true);
-            document.getElementById('result').style.display = 'none';
-
-            // Simulate search delay
-            setTimeout(() => {
-                showLoading(false);
-                
-                let result = "क्षमा करें, इस इलाके की जानकारी उपलब्ध नहीं है।";
-                
-                // Check if query matches any village
-                for (let village in villageData) {
-                    if (query.includes(village) || village.includes(query)) {
-                        result = villageData[village];
-                        break;
-                    }
-                }
-
-                if (query.includes('गाँव') || query.includes('village')) {
-                    result = "भारत में 6 लाख+ गाँव हैं। अधिक विशिष्ट जानकारी के लिए गाँव का नाम और राज्य बताएं।";
-                }
-
-                displayResult(result);
-            }, 1500);
-        }
-
-        function displayResult(text) {
-            document.getElementById('resultText').innerHTML = text;
-            document.getElementById('result').style.display = 'block';
-            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showLoading(show) {
-            document.getElementById('loading').style.display = show ? 'block' : 'none';
-        }
-
-        function startVoiceSearch() {
-            if ('webkitSpeechRecognition' in window) {
-                const recognition = new webkitSpeechRecognition();
-                recognition.lang = 'hi-IN';
-                
-                recognition.onresult = function(event) {
-                    const transcript = event.results[0][0].transcript;
-                    document.getElementById('searchInput').value = transcript;
-                    searchVillage();
-                };
-                
-                recognition.start();
-            } else {
-                alert('आपका ब्राउज़र वॉइस सर्च को सपोर्ट नहीं करता!');
-            }
-        }
-
-        // Enter key support
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                searchVillage();
-            }
-        });
-
-        // Auto-focus on input
-        window.onload = function() {
-            document.getElementById('searchInput').focus();
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
-</html>
+    </html>
