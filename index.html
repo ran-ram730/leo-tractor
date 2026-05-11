@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Search Engine</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Video Downloader</title>
 
   <style>
 
@@ -11,208 +11,152 @@
       margin:0;
       padding:0;
       box-sizing:border-box;
-      font-family:Arial;
+      font-family:Arial, sans-serif;
     }
 
     body{
-      background:#0f172a;
-      color:white;
-    }
-
-    header{
-      background:#111827;
-      padding:20px;
-      text-align:center;
-    }
-
-    header h1{
-      color:#3b82f6;
-      font-size:45px;
-    }
-
-    .hero{
-      text-align:center;
-      padding:80px 20px;
-    }
-
-    .search-box{
-      margin-top:30px;
+      background:linear-gradient(135deg,#ff416c,#ff4b2b);
+      height:100vh;
       display:flex;
       justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+      align-items:center;
     }
 
-    .search-box input{
-      width:60%;
-      padding:15px;
-      border:none;
-      border-radius:10px;
-      font-size:18px;
-    }
-
-    .search-box button{
-      padding:15px 25px;
-      border:none;
-      border-radius:10px;
-      background:#2563eb;
-      color:white;
-      cursor:pointer;
-      font-size:18px;
-    }
-
-    .search-box button:hover{
-      background:#1d4ed8;
-    }
-
-    .result{
-      width:80%;
-      margin:30px auto;
-      background:#1e293b;
-      padding:20px;
-      border-radius:15px;
-      display:none;
-    }
-
-    .cards{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:20px;
+    .container{
+      width:450px;
+      background:#fff;
       padding:40px;
+      border-radius:20px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.2);
     }
 
-    .card{
-      background:#1e293b;
-      padding:20px;
-      border-radius:15px;
-    }
-
-    .card h3{
-      color:#60a5fa;
+    h1{
+      color:#333;
       margin-bottom:10px;
     }
 
-    footer{
-      background:#111827;
-      text-align:center;
-      padding:20px;
-      margin-top:40px;
+    p{
+      color:#666;
+      margin-bottom:20px;
+    }
+
+    input{
+      width:100%;
+      padding:15px;
+      border:2px solid #ddd;
+      border-radius:10px;
+      margin-bottom:20px;
+      font-size:16px;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:10px;
+      background:#ff4b2b;
+      color:white;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#ff416c;
+    }
+
+    #result{
+      margin-top:25px;
+    }
+
+    .download-btn{
+      display:block;
+      background:#28a745;
+      color:white;
+      text-decoration:none;
+      padding:12px;
+      border-radius:10px;
+      margin-top:10px;
     }
 
   </style>
-
 </head>
 <body>
 
-<header>
-  <h1>Search Engine</h1>
-  <p>Duniya ki legal jankari</p>
-</header>
+  <div class="container">
 
-<section class="hero">
+    <h1>Video Downloader</h1>
 
-  <h2>Kuch bhi poochhiye</h2>
+    <p>
+      Download YouTube & Instagram Videos
+    </p>
 
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Apna sawal likhiye">
-    <button onclick="searchData()">Search</button>
+    <input
+      type="text"
+      id="videoLink"
+      placeholder="Paste Video Link Here"
+    >
+
+    <button onclick="downloadVideo()">
+      Download Video
+    </button>
+
+    <div id="result"></div>
+
   </div>
 
-</section>
+  <script>
 
-<div class="result" id="resultBox"></div>
+    function downloadVideo(){
 
-<section class="cards">
+      let link = document.getElementById(
+        "videoLink"
+      ).value;
 
-  <div class="card">
-    <h3>Technology</h3>
-    <p>AI, Coding aur Internet ki jankari.</p>
-  </div>
+      let result = document.getElementById(
+        "result"
+      );
 
-  <div class="card">
-    <h3>Education</h3>
-    <p>Study aur exams ki jankari.</p>
-  </div>
+      if(link === ""){
 
-  <div class="card">
-    <h3>Business</h3>
-    <p>Online earning aur startup ideas.</p>
-  </div>
+        result.innerHTML = `
+          <p style="color:red;">
+            Please Paste Video Link
+          </p>
+        `;
 
-  <div class="card">
-    <h3>Health</h3>
-    <p>Fitness aur healthy lifestyle tips.</p>
-  </div>
+        return;
+      }
 
-</section>
+      result.innerHTML = `
 
-<footer>
-  © 2026 Search Engine
-</footer>
+        <h3 style="margin-bottom:15px;">
+          Download Quality
+        </h3>
 
-<script>
+        <a class="download-btn"
+           href="${link}"
+           target="_blank">
+           Download 4K
+        </a>
 
-function searchData(){
+        <a class="download-btn"
+           href="${link}"
+           target="_blank">
+           Download 2K
+        </a>
 
-  let input =
-  document.getElementById("searchInput")
-  .value.toLowerCase();
+        <a class="download-btn"
+           href="${link}"
+           target="_blank">
+           Download HD
+        </a>
 
-  let result =
-  document.getElementById("resultBox");
+      `;
+    }
 
-  let answer = "";
-
-  if(input.includes("ai")){
-
-    answer =
-    "AI ka matlab Artificial Intelligence hota hai.";
-
-  }
-
-  else if(input.includes("business")){
-
-    answer =
-    "Online business ideas: YouTube, Blogging, Freelancing.";
-
-  }
-
-  else if(input.includes("health")){
-
-    answer =
-    "Healthy rehne ke liye exercise aur proper sleep zaruri hai.";
-
-  }
-
-  else if(input.includes("india")){
-
-    answer =
-    "India ka capital New Delhi hai.";
-
-  }
-
-  else if(input == ""){
-
-    answer =
-    "Kripya koi sawal likhiye.";
-
-  }
-
-  else{
-
-    answer =
-    "Sirf legal aur educational sawalon ke jawab diye jaate hain.";
-
-  }
-
-  result.style.display = "block";
-
-  result.innerHTML =
-  "<h2>Answer</h2><p>"+answer+"</p>";
-
-}
-
-</script>
+  </script>
 
 </body>
-      </html>
+</html>
