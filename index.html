@@ -1,233 +1,551 @@
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="hi">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-6432140563201928">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aesthetic Profile Analytics</title>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6432140563201928"
-     crossorigin="anonymous"></script>
+    <title>CLASS ROOM 16 - Teachers Day Celebration Gallery | Amardeep Patel Sir</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#fef9c3',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        },
+                        darkbg: '#0a0a0c',
+                        cardbg: '#141419',
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         body {
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            position: relative;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0a0a0c;
+            color: #f3f4f6;
+            overflow-x: hidden;
         }
 
-        /* Background me glowing orbs aesthetic look ke liye */
-        body::before, body::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 0;
-            opacity: 0.4;
-        }
-        body::before {
-            background: #8b5cf6;
-            top: 20%;
-            left: 25%;
-            animation: float 6s ease-in-out infinite alternate;
-        }
-        body::after {
-            background: #ec4899;
-            bottom: 20%;
-            right: 25%;
-            animation: float 6s ease-in-out infinite alternate-reverse;
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff2a3 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            100% { transform: translateY(20px); }
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Glassmorphism Card Container */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            padding: 40px 30px;
-            width: 400px;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            z-index: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .glass-card:hover {
+        .gold-border-glow:hover {
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
             transform: translateY(-5px);
         }
 
-        .logo-area {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #a78bfa, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
+        .glass-panel {
+            background: rgba(20, 20, 25, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        h2 {
-            color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
         }
 
-        p {
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
-            line-height: 1.4;
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
         }
 
-        /* Input Wrapper & Style */
-        .input-group {
-            position: relative;
-            margin-bottom: 20px;
+        .hero-glow {
+            animation: pulseGlow 4s infinite ease-in-out;
         }
-
-        .input-group input {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            outline: none;
-            color: #ffffff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .input-group input:focus {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #a78bfa;
-            box-shadow: 0 0 15px rgba(167, 139, 250, 0.2);
-        }
-
-        .input-group input::placeholder {
-            color: #64748b;
-        }
-
-        /* Aesthetic Gradient Button */
-        .btn-search {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            border: none;
-            border-radius: 14px;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(168, 85, 247, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .btn-search:hover {
-            opacity: 0.9;
-            box-shadow: 0 12px 25px rgba(168, 85, 247, 0.5);
-            transform: scale(1.01);
-        }
-
-        .btn-search:active {
-            transform: scale(0.99);
-        }
-
-        /* Custom Modern Alert Box (Modal) */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            z-index: 10;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: #1e1b4b;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-            width: 320px;
-            text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
-            animation: popIn 0.3s ease;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-content h3 { color: #f472b6; margin-bottom: 10px; }
-        .modal-content p { color: #cbd5e1; margin-bottom: 20px; }
-        .modal-close {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .modal-close:hover { background: rgba(255, 255, 255, 0.2); }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
 
-<div class="glass-card">
-    <div class="logo-area">✧</div>
-    <h2>Lens View</h2>
-    <p>Analyze and fetch public database structures for the requested handle legally.</p>
-    
-    <div class="input-group">
-        <input type="text" id="usernameInput" placeholder="Enter username (e.g., @alex)">
+    <canvas id="particlesCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Content Container -->
+    <div class="relative z-10 flex-grow flex flex-col">
+
+        <header class="relative border-b border-gold-600/30 bg-gradient-to-b from-stone-950 via-neutral-900 to-darkbg py-10 px-4 text-center">
+            <div class="hero-glow absolute inset-0 bg-radial from-gold-500/10 via-transparent to-transparent pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-2">
+                    <i class="fa-solid font-bold fa-graduation-cap"></i> CLASS ROOM NO. 16
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading gold-gradient-text tracking-wide uppercase leading-tight">
+                    ✨ Happy Teachers Day ✨
+                </h1>
+
+                <!-- Dedicated to Sir -->
+                <div class="pt-2">
+                    <p class="text-xl sm:text-2xl font-bold text-slate-100 flex items-center justify-center gap-2">
+                        <span>Honouring Respected</span>
+                        <span class="text-gold-400 underline decoration-gold-500 decoration-2 underline-offset-4">Amardeep Patel Sir</span>
+                    </p>
+                </div>
+
+                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto font-light">
+                    Ribbon Cutting • Tilak • Cake Celebration • Group Memories
+                </p>
+
+                <!-- Quick Action Stats & Options Bar -->
+                <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
+                    <span class="inline-flex items-center gap-2 bg-gold-500 text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg shadow-gold-500/20">
+                        <i class="fa-solid fa-images"></i> 12 Precious Memories
+                    </span>
+
+                    <button id="uploadTriggerBtn" onclick="document.getElementById('localFolderInput').click()" class="inline-flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 text-gold-400 border border-gold-500/40 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition">
+                        <i class="fa-solid fa-folder-open"></i> Load Custom Photos
+                    </button>
+                    <input type="file" id="localFolderInput" multiple accept="image/*" class="hidden" onchange="handleImageUpload(event)">
+
+                    <button onclick="toggleAudio()" id="audioBtn" class="inline-flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 text-gray-300 border border-neutral-700 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition">
+                        <i class="fa-solid fa-music text-gold-400"></i> <span id="audioStatusText">Celebration Music</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
+
+            <!-- Search & Filter Bar -->
+            <div class="glass-panel p-4 rounded-2xl border border-neutral-800 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                
+                <!-- Search Box -->
+                <div class="relative w-full md:w-80">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
+                    <input type="text" id="searchInput" oninput="filterGallery()" placeholder="Search memory (e.g. Cake, Tilak)..." class="w-full bg-neutral-900/90 text-sm text-gray-200 placeholder-gray-500 pl-10 pr-4 py-2.5 rounded-xl border border-neutral-700 focus:outline-none focus:border-gold-500 transition">
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto" id="filterContainer">
+                    <button onclick="setFilter('all')" class="filter-btn active text-xs font-semibold px-4 py-2 rounded-xl bg-gold-500 text-black transition">All (12)</button>
+                    <button onclick="setFilter('ribbon')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Ribbon & Tilak</button>
+                    <button onclick="setFilter('cake')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Cake Cutting</button>
+                    <button onclick="setFilter('group')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Group Photos</button>
+                </div>
+            </div>
+
+            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Dynamic Card items inserted via JS -->
+            </div>
+
+            <section class="mt-16 glass-panel rounded-2xl p-6 sm:p-8 border border-neutral-800">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-heading font-bold gold-gradient-text">Tribute to Amardeep Patel Sir</h2>
+                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Leave your warm Teacher's Day greetings and wishes for Amardeep Patel Sir below!</p>
+                </div>
+
+                <!-- Message Input -->
+                <div class="max-w-xl mx-auto space-y-4 mb-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <input type="text" id="wishAuthor" placeholder="Your Name (Student/Classroom 16)" class="bg-neutral-900 border border-neutral-700 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500">
+                        <select id="wishRole" class="bg-neutral-900 border border-neutral-700 text-sm text-gray-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-gold-500">
+                            <option value="Student - Class 16">Student - Class 16</option>
+                            <option value="Class Representative">Class Representative</option>
+                            <option value="Well Wisher">Well Wisher</option>
+                        </select>
+                    </div>
+                    <textarea id="wishText" rows="3" placeholder="Write your Teacher's Day message for Amardeep Patel Sir..." class="w-full bg-neutral-900 border border-neutral-700 text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500"></textarea>
+                    <button onclick="postWish()" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold py-2.5 rounded-xl transition shadow-md shadow-gold-500/20 text-sm">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Send Wish to Sir
+                    </button>
+                </div>
+
+                <!-- Wishes Feed -->
+                <div id="wishesFeed" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Default Wishes -->
+                </div>
+            </section>
+        </main>
+
+        <footer class="border-t border-neutral-900 bg-black/90 py-6 px-4 text-center mt-12">
+            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+                <p>© CLASS ROOM NO. 16 • Teachers Day Special Memories Gallery</p>
+                
+                <!-- Founder Vinay Small Credit -->
+                <p class="text-xs text-gray-400 font-medium tracking-wide">
+                    Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by <span class="text-gold-400 font-bold">Founder Vinay</span>
+                </p>
+            </div>
+        </footer>
     </div>
-    
-    <button class="btn-search" onclick="showAestheticAlert()">Analyze Profile</button>
-</div>
 
-<!-- Custom Aesthetic Modal -->
-<div class="modal" id="customModal">
-    <div class="modal-content">
-        <h3>Security Notice</h3>
-        <p>Bypassing private IDs is restricted by cloud firewalls. This UI serves as a frontend design concept.</p>
-        <button class="modal-close" onclick="closeModal()">Understood</button>
+    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/95 hidden backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 transition-all duration-300">
+        
+        <!-- Modal Top Bar -->
+        <div class="flex items-center justify-between text-white border-b border-neutral-800 pb-4">
+            <div class="flex items-center gap-3">
+                <span id="modalCounter" class="text-xs font-mono bg-gold-500/20 text-gold-400 px-3 py-1 rounded-full border border-gold-500/30">1 / 12</span>
+                <h3 id="modalTitle" class="text-sm sm:text-base font-semibold text-gray-200 truncate max-w-xs sm:max-w-md">Photo Details</h3>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <button onclick="downloadCurrentImage()" class="p-2 text-gray-400 hover:text-gold-400 transition" title="Download Photo">
+                    <i class="fa-solid fa-download text-lg"></i>
+                </button>
+                <button onclick="closeLightbox()" class="p-2 text-gray-400 hover:text-red-400 transition text-2xl font-bold" title="Close (Esc)">
+                    &times;
+                </button>
+            </div>
+        </div>
+
+        <!-- Modal Main Image View -->
+        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
+            <button onclick="prevImage()" class="absolute left-2 sm:left-6 z-20 bg-black/60 hover:bg-gold-500 hover:text-black text-white p-3 rounded-full border border-neutral-700 transition">
+                <i class="fa-solid fa-chevron-left text-lg"></i>
+            </button>
+
+            <img id="modalImg" src="" alt="Gallery Image" class="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-transform duration-300 border border-neutral-800">
+
+            <button onclick="nextImage()" class="absolute right-2 sm:right-6 z-20 bg-black/60 hover:bg-gold-500 hover:text-black text-white p-3 rounded-full border border-neutral-700 transition">
+                <i class="fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Modal Bottom Caption -->
+        <div class="text-center pt-2 border-t border-neutral-800">
+            <p id="modalCaption" class="text-sm sm:text-base font-medium text-gold-400"></p>
+            <p class="text-xs text-gray-500 mt-1">Dedicated to Amardeep Patel Sir • Class Room 16</p>
+        </div>
     </div>
-</div>
 
-<script>
-    function showAestheticAlert() {
-        const input = document.getElementById('usernameInput').value;
-        if(input.trim() === "") {
-            alert("Please enter a username first!");
-            return;
+    <!-- Toast Notification Box -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 bg-neutral-900 text-gold-400 border border-gold-500/40 px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 text-xs sm:text-sm flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-gold-400"></i>
+        <span id="toastMsg">Action completed successfully!</span>
+    </div>
+
+    <script>
+        const initialGalleryData = [
+            { id: 1, src: "1.jpg", caption: "Ribbon Cutting Ceremony - CLASS ROOM 16", category: "ribbon", alt: "Ribbon Cutting" },
+            { id: 2, src: "2.jpg", caption: "Tilak Ceremony - Honouring Amardeep Patel Sir", category: "ribbon", alt: "Tilak Ceremony" },
+            { id: 3, src: "3.jpg", caption: "Cake Celebration - All Teachers & Students", category: "cake", alt: "Cake Celebration" },
+            { id: 4, src: "4.jpg", caption: "Tilak - Respect to Teacher Amardeep Patel Sir", category: "ribbon", alt: "Tilak Respect" },
+            { id: 5, src: "5.jpg", caption: "Cake Cutting Time - Classroom 16", category: "cake", alt: "Cake Cutting" },
+            { id: 6, src: "6.jpg", caption: "Students Selfie - CLASS ROOM 16", category: "group", alt: "Students Selfie" },
+            { id: 7, src: "7.jpg", caption: "Group Photo - Students & Friends", category: "group", alt: "Group Photo" },
+            { id: 8, src: "8.jpg", caption: "Teachers Group with Cake", category: "cake", alt: "Teachers Group" },
+            { id: 9, src: "9.jpg", caption: "Student feeding Cake to Amardeep Patel Sir", category: "cake", alt: "Feeding Cake" },
+            { id: 10, src: "10.jpg", caption: "Boys Group Photo - Teachers Day", category: "group", alt: "Boys Group" },
+            { id: 11, src: "11.jpg", caption: "Teachers with Cake - CLASS ROOM 16", category: "cake", alt: "Teachers with Cake" },
+            { id: 12, src: "12.jpg", caption: "Full Class Group Photo - Memories", category: "group", alt: "Full Class Group" }
+        ];
+
+        let galleryItems = [...initialGalleryData];
+        let currentFilter = 'all';
+        let currentImageIndex = 0;
+        let isAudioPlaying = false;
+        let audioContext = null;
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const searchVal = document.getElementById('searchInput').value.toLowerCase();
+
+            const filtered = galleryItems.filter(item => {
+                const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.caption.toLowerCase().includes(searchVal);
+                return matchesFilter && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-12 text-center text-gray-500">
+                        <i class="fa-solid fa-image text-4xl mb-3 text-neutral-700"></i>
+                        <p class="text-sm">No photos found matching your criteria.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map((item, index) => {
+                // Fallback SVG graphic generator for missing local images
+                const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"><rect width="100%" height="100%" fill="%2318181b"/><text x="50%" y="45%" fill="%23d4af37" font-family="sans-serif" font-size="28" font-weight="bold" text-anchor="middle">CLASS ROOM 16</text><text x="50%" y="53%" fill="%23a1a1aa" font-family="sans-serif" font-size="20" text-anchor="middle">${encodeURIComponent(item.caption)}</text><text x="50%" y="60%" fill="%23eab308" font-family="sans-serif" font-size="16" text-anchor="middle">Photo ${item.id} of 12</text></svg>`;
+
+                return `
+                    <div class="card gold-border-glow bg-cardbg rounded-2xl overflow-hidden cursor-pointer flex flex-col group" onclick="openLightbox(${galleryItems.indexOf(item)})">
+                        <div class="relative overflow-hidden aspect-[3/4] bg-neutral-900">
+                            <img src="${item.src}" 
+                                 onerror="this.onerror=null; this.src='${svgPlaceholder}';" 
+                                 alt="${item.alt}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
+                            
+                            <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-gold-400 text-xs px-2.5 py-1 rounded-full border border-gold-500/30 font-semibold">
+                                #${item.id}
+                            </div>
+                            
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                                <span class="text-xs text-gold-300 font-medium flex items-center gap-1.5">
+                                    <i class="fa-solid fa-expand"></i> Click to view full image
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 bg-neutral-950/90 text-center flex-grow flex flex-col justify-center border-t border-neutral-800/80">
+                            <p class="text-xs sm:text-sm font-semibold text-gold-400 line-clamp-2 leading-snug">
+                                ${item.caption}
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         }
-        document.getElementById('customModal').style.display = 'flex';
-    }
 
-    function closeModal() {
-        document.getElementById('customModal').style.display = 'none';
-    }
-</script>
+        function openLightbox(index) {
+            currentImageIndex = index;
+            updateLightboxContent();
+            document.getElementById('lightboxModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
 
+        function closeLightbox() {
+            document.getElementById('lightboxModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightboxContent() {
+            const item = galleryItems[currentImageIndex];
+            const img = document.getElementById('modalImg');
+            
+            const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900"><rect width="100%" height="100%" fill="%2318181b"/><text x="50%" y="45%" fill="%23d4af37" font-family="sans-serif" font-size="36" font-weight="bold" text-anchor="middle">CLASS ROOM 16</text><text x="50%" y="54%" fill="%23f4f4f5" font-family="sans-serif" font-size="24" text-anchor="middle">${encodeURIComponent(item.caption)}</text></svg>`;
+
+            img.src = item.src;
+            img.onerror = () => { img.src = svgPlaceholder; };
+            
+            document.getElementById('modalCaption').innerText = item.caption;
+            document.getElementById('modalTitle').innerText = item.caption;
+            document.getElementById('modalCounter').innerText = `${currentImageIndex + 1} / ${galleryItems.length}`;
+        }
+
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+            updateLightboxContent();
+        }
+
+        function prevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateLightboxContent();
+        }
+
+        function downloadCurrentImage() {
+            const item = galleryItems[currentImageIndex];
+            const a = document.createElement('a');
+            a.href = item.src;
+            a.download = `ClassRoom16_TeachersDay_${item.id}.jpg`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            showToast("Photo download started!");
+        }
+
+        function filterGallery() {
+            renderGallery();
+        }
+
+        function setFilter(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-gold-500', 'text-black', 'active');
+                btn.classList.add('bg-neutral-800', 'text-gray-300');
+            });
+
+            event.currentTarget.classList.remove('bg-neutral-800', 'text-gray-300');
+            event.currentTarget.classList.add('bg-gold-500', 'text-black', 'active');
+            renderGallery();
+        }
+
+        function handleImageUpload(e) {
+            const files = e.target.files;
+            if (!files || files.length === 0) return;
+
+            galleryItems = Array.from(files).map((file, idx) => ({
+                id: idx + 1,
+                src: URL.createObjectURL(file),
+                caption: file.name.replace(/\.[^/.]+$/, ""),
+                category: 'all',
+                alt: file.name
+            }));
+
+            renderGallery();
+            showToast(`Loaded ${files.length} photos successfully!`);
+        }
+
+        const initialWishes = [
+            { name: "Vinay (Founder)", role: "Class Representative", text: "Happy Teacher's Day to Amardeep Patel Sir! Thank you for being our constant guide and inspiring us every single day." },
+            { name: "Class Room 16 Students", role: "Class 16 Batch", text: "Best wishes to Amardeep Patel Sir! This cake celebration and ceremony will always remain in our hearts." }
+        ];
+
+        function renderWishes() {
+            const feed = document.getElementById('wishesFeed');
+            feed.innerHTML = initialWishes.map(wish => `
+                <div class="p-4 bg-neutral-900/90 border border-neutral-800 rounded-xl flex flex-col justify-between">
+                    <p class="text-xs sm:text-sm text-gray-300 italic mb-3">"${wish.text}"</p>
+                    <div class="flex items-center justify-between border-t border-neutral-800/60 pt-2 text-xs">
+                        <span class="font-bold text-gold-400">${wish.name}</span>
+                        <span class="text-neutral-500">${wish.role}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function postWish() {
+            const author = document.getElementById('wishAuthor').value.trim() || "Anonymous Student";
+            const role = document.getElementById('wishRole').value;
+            const text = document.getElementById('wishText').value.trim();
+
+            if (!text) {
+                showToast("Please enter a message for Amardeep Patel Sir!");
+                return;
+            }
+
+            initialWishes.unshift({ name: author, role: role, text: text });
+            renderWishes();
+
+            document.getElementById('wishText').value = '';
+            showToast("Your wish for Amardeep Patel Sir has been posted!");
+        }
+
+        function toggleAudio() {
+            const btnText = document.getElementById('audioStatusText');
+            if (!isAudioPlaying) {
+                playCelebrationTune();
+                isAudioPlaying = true;
+                btnText.innerText = "Music Playing 🎵";
+                showToast("Celebration melody started!");
+            } else {
+                if (audioContext) audioContext.close();
+                isAudioPlaying = false;
+                btnText.innerText = "Celebration Music";
+                showToast("Music stopped.");
+            }
+        }
+
+        function playCelebrationTune() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                audioContext = new AudioCtx();
+
+                const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C Major scale
+                let noteIndex = 0;
+
+                setInterval(() => {
+                    if (!isAudioPlaying || !audioContext) return;
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(notes[noteIndex % notes.length], audioContext.currentTime);
+
+                    gain.gain.setValueAtTime(0.05, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
+
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+
+                    osc.start();
+                    osc.stop(audioContext.currentTime + 0.8);
+
+                    noteIndex++;
+                }, 400);
+            } catch (e) {
+                console.log("Audio API issue: ", e);
+            }
+        }
+
+        function initParticles() {
+            const canvas = document.getElementById('particlesCanvas');
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const particles = Array.from({ length: 45 }, () => ({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                radius: Math.random() * 2 + 1,
+                speedY: Math.random() * 0.5 + 0.2,
+                alpha: Math.random() * 0.6 + 0.2
+            }));
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach(p => {
+                    p.y -= p.speedY;
+                    if (p.y < 0) p.y = height;
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        /* Helper Toast function */
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Keyboard listener for Lightbox navigation
+        window.addEventListener('keydown', (e) => {
+            if (document.getElementById('lightboxModal').classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        window.onload = function() {
+            renderGallery();
+            renderWishes();
+            initParticles();
+        };
+    </script>
 </body>
 </html>
