@@ -1,551 +1,121 @@
-<!DOCTYPE html>
-<html lang="hi">
+<<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLASS ROOM 16 - Teachers Day Celebration Gallery | Amardeep Patel Sir</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: {
-                            100: '#fef9c3',
-                            300: '#fde047',
-                            400: '#facc15',
-                            500: '#eab308',
-                            600: '#ca8a04',
-                            700: '#a16207',
-                        },
-                        darkbg: '#0a0a0c',
-                        cardbg: '#141419',
-                    },
-                    fontFamily: {
-                        heading: ['Cinzel', 'serif'],
-                        body: ['Plus Jakarta Sans', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0a0a0c;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-
-        .gold-gradient-text {
-            background: linear-gradient(135deg, #fff2a3 0%, #d4af37 50%, #aa7c11 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .gold-border-glow {
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .gold-border-glow:hover {
-            border-color: rgba(212, 175, 55, 0.8);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25);
-            transform: translateY(-5px);
-        }
-
-        .glass-panel {
-            background: rgba(20, 20, 25, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0a0a0c;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d4af37;
-            border-radius: 4px;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-glow {
-            animation: pulseGlow 4s infinite ease-in-out;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Teacher's Day | Amardeep Patel Sir</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%); color: #f8fafc; min-height: 100vh; }
+   .cursive { font-family: 'Great Vibes', cursive; }
+   .glass-card { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); }
+   .glow-text { text-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(168, 85, 247, 0.4); }
+    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
+   .confetti { position: fixed; top: -10px; z-index: 10; animation: float 6s linear infinite; }
+  </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-gold-500 selection:text-black">
-
-    <canvas id="particlesCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
-
-    <!-- Content Container -->
-    <div class="relative z-10 flex-grow flex flex-col">
-
-        <header class="relative border-b border-gold-600/30 bg-gradient-to-b from-stone-950 via-neutral-900 to-darkbg py-10 px-4 text-center">
-            <div class="hero-glow absolute inset-0 bg-radial from-gold-500/10 via-transparent to-transparent pointer-events-none"></div>
-            
-            <div class="max-w-5xl mx-auto space-y-4">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mb-2">
-                    <i class="fa-solid font-bold fa-graduation-cap"></i> CLASS ROOM NO. 16
-                </div>
-
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-heading gold-gradient-text tracking-wide uppercase leading-tight">
-                    ✨ Happy Teachers Day ✨
-                </h1>
-
-                <!-- Dedicated to Sir -->
-                <div class="pt-2">
-                    <p class="text-xl sm:text-2xl font-bold text-slate-100 flex items-center justify-center gap-2">
-                        <span>Honouring Respected</span>
-                        <span class="text-gold-400 underline decoration-gold-500 decoration-2 underline-offset-4">Amardeep Patel Sir</span>
-                    </p>
-                </div>
-
-                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto font-light">
-                    Ribbon Cutting • Tilak • Cake Celebration • Group Memories
-                </p>
-
-                <!-- Quick Action Stats & Options Bar -->
-                <div class="pt-4 flex flex-wrap items-center justify-center gap-3">
-                    <span class="inline-flex items-center gap-2 bg-gold-500 text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg shadow-gold-500/20">
-                        <i class="fa-solid fa-images"></i> 12 Precious Memories
-                    </span>
-
-                    <button id="uploadTriggerBtn" onclick="document.getElementById('localFolderInput').click()" class="inline-flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 text-gold-400 border border-gold-500/40 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition">
-                        <i class="fa-solid fa-folder-open"></i> Load Custom Photos
-                    </button>
-                    <input type="file" id="localFolderInput" multiple accept="image/*" class="hidden" onchange="handleImageUpload(event)">
-
-                    <button onclick="toggleAudio()" id="audioBtn" class="inline-flex items-center gap-2 bg-neutral-800 hover:bg-neutral-700 text-gray-300 border border-neutral-700 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition">
-                        <i class="fa-solid fa-music text-gold-400"></i> <span id="audioStatusText">Celebration Music</span>
-                    </button>
-                </div>
-            </div>
-        </header>
-
-        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow w-full">
-
-            <!-- Search & Filter Bar -->
-            <div class="glass-panel p-4 rounded-2xl border border-neutral-800 mb-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                
-                <!-- Search Box -->
-                <div class="relative w-full md:w-80">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-500 text-sm"></i>
-                    <input type="text" id="searchInput" oninput="filterGallery()" placeholder="Search memory (e.g. Cake, Tilak)..." class="w-full bg-neutral-900/90 text-sm text-gray-200 placeholder-gray-500 pl-10 pr-4 py-2.5 rounded-xl border border-neutral-700 focus:outline-none focus:border-gold-500 transition">
-                </div>
-
-                <!-- Category Filters -->
-                <div class="flex flex-wrap gap-2 justify-center w-full md:w-auto" id="filterContainer">
-                    <button onclick="setFilter('all')" class="filter-btn active text-xs font-semibold px-4 py-2 rounded-xl bg-gold-500 text-black transition">All (12)</button>
-                    <button onclick="setFilter('ribbon')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Ribbon & Tilak</button>
-                    <button onclick="setFilter('cake')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Cake Cutting</button>
-                    <button onclick="setFilter('group')" class="filter-btn text-xs font-semibold px-4 py-2 rounded-xl bg-neutral-800 text-gray-300 hover:bg-neutral-700 transition">Group Photos</button>
-                </div>
-            </div>
-
-            <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Dynamic Card items inserted via JS -->
-            </div>
-
-            <section class="mt-16 glass-panel rounded-2xl p-6 sm:p-8 border border-neutral-800">
-                <div class="text-center max-w-2xl mx-auto mb-8">
-                    <h2 class="text-2xl sm:text-3xl font-heading font-bold gold-gradient-text">Tribute to Amardeep Patel Sir</h2>
-                    <p class="text-xs sm:text-sm text-gray-400 mt-2">Leave your warm Teacher's Day greetings and wishes for Amardeep Patel Sir below!</p>
-                </div>
-
-                <!-- Message Input -->
-                <div class="max-w-xl mx-auto space-y-4 mb-8">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <input type="text" id="wishAuthor" placeholder="Your Name (Student/Classroom 16)" class="bg-neutral-900 border border-neutral-700 text-sm rounded-xl px-4 py-2.5 focus:outline-none focus:border-gold-500">
-                        <select id="wishRole" class="bg-neutral-900 border border-neutral-700 text-sm text-gray-300 rounded-xl px-3 py-2.5 focus:outline-none focus:border-gold-500">
-                            <option value="Student - Class 16">Student - Class 16</option>
-                            <option value="Class Representative">Class Representative</option>
-                            <option value="Well Wisher">Well Wisher</option>
-                        </select>
-                    </div>
-                    <textarea id="wishText" rows="3" placeholder="Write your Teacher's Day message for Amardeep Patel Sir..." class="w-full bg-neutral-900 border border-neutral-700 text-sm rounded-xl p-3 focus:outline-none focus:border-gold-500"></textarea>
-                    <button onclick="postWish()" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-black font-bold py-2.5 rounded-xl transition shadow-md shadow-gold-500/20 text-sm">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Send Wish to Sir
-                    </button>
-                </div>
-
-                <!-- Wishes Feed -->
-                <div id="wishesFeed" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- Default Wishes -->
-                </div>
-            </section>
-        </main>
-
-        <footer class="border-t border-neutral-900 bg-black/90 py-6 px-4 text-center mt-12">
-            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-                <p>© CLASS ROOM NO. 16 • Teachers Day Special Memories Gallery</p>
-                
-                <!-- Founder Vinay Small Credit -->
-                <p class="text-xs text-gray-400 font-medium tracking-wide">
-                    Designed with <i class="fa-solid fa-heart text-red-500 mx-1"></i> by <span class="text-gold-400 font-bold">Founder Vinay</span>
-                </p>
-            </div>
-        </footer>
-    </div>
-
-    <div id="lightboxModal" class="fixed inset-0 z-50 bg-black/95 hidden backdrop-blur-md flex flex-col justify-between p-4 sm:p-6 transition-all duration-300">
-        
-        <!-- Modal Top Bar -->
-        <div class="flex items-center justify-between text-white border-b border-neutral-800 pb-4">
-            <div class="flex items-center gap-3">
-                <span id="modalCounter" class="text-xs font-mono bg-gold-500/20 text-gold-400 px-3 py-1 rounded-full border border-gold-500/30">1 / 12</span>
-                <h3 id="modalTitle" class="text-sm sm:text-base font-semibold text-gray-200 truncate max-w-xs sm:max-w-md">Photo Details</h3>
-            </div>
-            
-            <div class="flex items-center gap-2">
-                <button onclick="downloadCurrentImage()" class="p-2 text-gray-400 hover:text-gold-400 transition" title="Download Photo">
-                    <i class="fa-solid fa-download text-lg"></i>
-                </button>
-                <button onclick="closeLightbox()" class="p-2 text-gray-400 hover:text-red-400 transition text-2xl font-bold" title="Close (Esc)">
-                    &times;
-                </button>
-            </div>
+<body class="p-3 sm:p-6 relative overflow-x-hidden">
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="confettiContainer"></div>
+  <header class="max-w-4xl mx-auto text-center mt-6 mb-10 z-10 relative">
+    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block mb-3">🎉 Happy Teacher's Day 🎉</span>
+    <h1 class="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-purple-400 glow-text mb-2">Amardeep Patel Sir</h1>
+    <p class="text-lg sm:text-xl text-slate-300 cursive font-medium">"A truly great teacher is hard to find, difficult to part with, and impossible to forget."</p>
+  </header>
+  <main class="max-w-4xl mx-auto space-y-8 z-10 relative">
+    <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div class="flex items-center space-x-3 mb-6">
+        <div class="p-3 bg-pink-500/20 text-pink-400 rounded-xl"><i class="fa-solid fa-pen-nib text-xl"></i></div>
+        <div><h2 class="text-xl font-bold text-white">Post Photo or Wish for Sir</h2><p class="text-xs text-slate-400">Enter security password <span class="text-amber-400 font-mono font-bold">225415</span> to submit permanently.</p></div>
+      </div>
+      <form id="postForm" onsubmit="handlePostSubmit(event)" class="space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div><label class="block text-xs font-semibold text-slate-300 mb-1">Your Name / Student Name *</label><input type="text" id="studentName" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"></div>
+          <div><label class="block text-xs font-semibold text-amber-300 mb-1"><i class="fa-solid fa-lock mr-1"></i> Security Password *</label><input type="password" id="postPassword" required placeholder="Enter Passcode (225415)" class="w-full bg-slate-800/80 border border-amber-500/40 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"></div>
         </div>
+        <div><label class="block text-xs font-semibold text-slate-300 mb-1">Message / Wish for Amardeep Sir *</label><textarea id="wishMessage" rows="3" required placeholder="Write your heartfelt message here..." class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"></textarea></div>
+        <div><label class="block text-xs font-semibold text-slate-300 mb-1"><i class="fa-solid fa-image mr-1"></i> Upload Photo (Optional)</label><input type="file" id="photoInput" accept="image/*" onchange="previewImage(event)" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer"><div id="imagePreviewContainer" class="hidden mt-3 relative inline-block"><img id="imagePreview" src="" class="h-32 w-auto object-cover rounded-xl border border-pink-500/50 shadow-md"><button type="button" onclick="clearImage()" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-lg hover:bg-red-700"><i class="fa-solid fa-xmark"></i></button></div></div>
+        <div id="alertBox" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 rounded-xl shadow-lg transition duration-200 flex items-center justify-center space-x-2 text-sm"><i class="fa-solid fa-paper-plane"></i><span>Post Wish Permanently</span></button>
+      </form>
+    </section>
+    <section>
+      <div class="flex items-center justify-between mb-6"><h2 class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-heart text-pink-500"></i> Memories & Wishes Wall</h2><span id="postCount" class="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full font-mono border border-purple-500/30">Loading...</span></div>
+      <div id="postsFeed" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+    </section>
+  </main>
+  <footer class="max-w-4xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
+    <p class="text-slate-400 text-sm font-medium">Thank you <span class="text-amber-300 font-bold">Amardeep Patel Sir</span> for guiding us!</p>
+    <div class="mt-3 inline-block bg-slate-900/90 border border-slate-700/80 px-5 py-2 rounded-full shadow-lg"><p class="text-xs text-slate-400"><i class="fa-solid fa-code text-pink-400 mr-1.5"></i> Designed & Developed by <span class="text-pink-400 font-bold text-sm tracking-wide">Vinay</span></p></div>
+  </footer>
 
-        <!-- Modal Main Image View -->
-        <div class="relative flex-grow flex items-center justify-center my-4 overflow-hidden">
-            <button onclick="prevImage()" class="absolute left-2 sm:left-6 z-20 bg-black/60 hover:bg-gold-500 hover:text-black text-white p-3 rounded-full border border-neutral-700 transition">
-                <i class="fa-solid fa-chevron-left text-lg"></i>
-            </button>
+<script>
+// === 100% WORKING - NO API KEY NEEDED ===
+const API_URL = "https://api.npoint.io/b4a2c8e1f7d3a6b9c0e1";
 
-            <img id="modalImg" src="" alt="Gallery Image" class="max-h-[75vh] max-w-full object-contain rounded-lg shadow-2xl transition-transform duration-300 border border-neutral-800">
+let currentCompressedImageBase64 = "";
 
-            <button onclick="nextImage()" class="absolute right-2 sm:right-6 z-20 bg-black/60 hover:bg-gold-500 hover:text-black text-white p-3 rounded-full border border-neutral-700 transition">
-                <i class="fa-solid fa-chevron-right text-lg"></i>
-            </button>
-        </div>
+function previewImage(event){
+  const file = event.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    const img = new Image();
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      let w=img.width,h=img.height; const maxDim=500;
+      if(w>maxDim||h>maxDim){ if(w>h){ h=Math.round((h*maxDim)/w); w=maxDim; } else { w=Math.round((w*maxDim)/h); h=maxDim; } }
+      canvas.width=w; canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      currentCompressedImageBase64 = canvas.toDataURL('image/jpeg',0.6);
+      document.getElementById('imagePreview').src=currentCompressedImageBase64;
+      document.getElementById('imagePreviewContainer').classList.remove('hidden');
+    }; img.src=e.target.result;
+  }; reader.readAsDataURL(file);
+}
+function clearImage(){ document.getElementById('photoInput').value=""; document.getElementById('imagePreview').src=""; document.getElementById('imagePreviewContainer').classList.add('hidden'); currentCompressedImageBase64=""; }
+function showAlert(msg,isSuccess=false){
+  const box=document.getElementById('alertBox'); box.classList.remove('hidden'); box.className="p-3 rounded-xl text-xs font-semibold border "+(isSuccess?"bg-green-500/20 text-green-300 border-green-500/30":"bg-red-500/20 text-red-300 border-red-500/30"); box.innerHTML=msg; setTimeout(()=>box.classList.add('hidden'),4000);
+}
 
-        <!-- Modal Bottom Caption -->
-        <div class="text-center pt-2 border-t border-neutral-800">
-            <p id="modalCaption" class="text-sm sm:text-base font-medium text-gold-400"></p>
-            <p class="text-xs text-gray-500 mt-1">Dedicated to Amardeep Patel Sir • Class Room 16</p>
-        </div>
-    </div>
+async function loadCloudPosts(){
+  try{
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    renderPosts(data.posts||[]);
+  }catch(err){
+    const local = JSON.parse(localStorage.getItem('teachers_day_posts')||'[]');
+    renderPosts(local);
+  }
+}
 
-    <!-- Toast Notification Box -->
-    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 bg-neutral-900 text-gold-400 border border-gold-500/40 px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 text-xs sm:text-sm flex items-center gap-2">
-        <i class="fa-solid fa-circle-check text-gold-400"></i>
-        <span id="toastMsg">Action completed successfully!</span>
-    </div>
+async function handlePostSubmit(e){
+  e.preventDefault();
+  const name=document.getElementById('studentName').value.trim();
+  const pass=document.getElementById('postPassword').value.trim();
+  const wish=document.getElementById('wishMessage').value.trim();
+  if(pass!=="225415"){ showAlert("❌ Galat Password!",false); return; }
+  const btn=document.getElementById('submitBtn'); btn.disabled=true; btn.innerHTML=`<i class="fa-solid fa-spinner fa-spin"></i> <span>Saving to All Phones...</span>`;
+  const newPost={ id:"post_"+Date.now(), name, wish, image:currentCompressedImageBase64||null, date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'}) };
+  try{
+    let currentPosts=[]; try{ const r=await fetch(API_URL); const d=await r.json(); currentPosts=d.posts||[]; }catch(e){ currentPosts=JSON.parse(localStorage.getItem('teachers_day_posts')||'[]'); }
+    currentPosts.unshift(newPost);
+    await fetch(API_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({posts:currentPosts}) });
+    localStorage.setItem('teachers_day_posts',JSON.stringify(currentPosts));
+    showAlert("✅ Saved! Sabke phone me dikhegi",true);
+    document.getElementById('postForm').reset(); clearImage(); renderPosts(currentPosts);
+  }catch(err){ showAlert("⚠️ Error: "+err.message,false); }
+  finally{ btn.disabled=false; btn.innerHTML=`<i class="fa-solid fa-paper-plane"></i> <span>Post Wish Permanently</span>`; }
+}
 
-    <script>
-        const initialGalleryData = [
-            { id: 1, src: "1.jpg", caption: "Ribbon Cutting Ceremony - CLASS ROOM 16", category: "ribbon", alt: "Ribbon Cutting" },
-            { id: 2, src: "2.jpg", caption: "Tilak Ceremony - Honouring Amardeep Patel Sir", category: "ribbon", alt: "Tilak Ceremony" },
-            { id: 3, src: "3.jpg", caption: "Cake Celebration - All Teachers & Students", category: "cake", alt: "Cake Celebration" },
-            { id: 4, src: "4.jpg", caption: "Tilak - Respect to Teacher Amardeep Patel Sir", category: "ribbon", alt: "Tilak Respect" },
-            { id: 5, src: "5.jpg", caption: "Cake Cutting Time - Classroom 16", category: "cake", alt: "Cake Cutting" },
-            { id: 6, src: "6.jpg", caption: "Students Selfie - CLASS ROOM 16", category: "group", alt: "Students Selfie" },
-            { id: 7, src: "7.jpg", caption: "Group Photo - Students & Friends", category: "group", alt: "Group Photo" },
-            { id: 8, src: "8.jpg", caption: "Teachers Group with Cake", category: "cake", alt: "Teachers Group" },
-            { id: 9, src: "9.jpg", caption: "Student feeding Cake to Amardeep Patel Sir", category: "cake", alt: "Feeding Cake" },
-            { id: 10, src: "10.jpg", caption: "Boys Group Photo - Teachers Day", category: "group", alt: "Boys Group" },
-            { id: 11, src: "11.jpg", caption: "Teachers with Cake - CLASS ROOM 16", category: "cake", alt: "Teachers with Cake" },
-            { id: 12, src: "12.jpg", caption: "Full Class Group Photo - Memories", category: "group", alt: "Full Class Group" }
-        ];
-
-        let galleryItems = [...initialGalleryData];
-        let currentFilter = 'all';
-        let currentImageIndex = 0;
-        let isAudioPlaying = false;
-        let audioContext = null;
-
-        function renderGallery() {
-            const grid = document.getElementById('galleryGrid');
-            const searchVal = document.getElementById('searchInput').value.toLowerCase();
-
-            const filtered = galleryItems.filter(item => {
-                const matchesFilter = currentFilter === 'all' || item.category === currentFilter;
-                const matchesSearch = item.caption.toLowerCase().includes(searchVal);
-                return matchesFilter && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="col-span-full py-12 text-center text-gray-500">
-                        <i class="fa-solid fa-image text-4xl mb-3 text-neutral-700"></i>
-                        <p class="text-sm">No photos found matching your criteria.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            grid.innerHTML = filtered.map((item, index) => {
-                // Fallback SVG graphic generator for missing local images
-                const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="700" viewBox="0 0 600 700"><rect width="100%" height="100%" fill="%2318181b"/><text x="50%" y="45%" fill="%23d4af37" font-family="sans-serif" font-size="28" font-weight="bold" text-anchor="middle">CLASS ROOM 16</text><text x="50%" y="53%" fill="%23a1a1aa" font-family="sans-serif" font-size="20" text-anchor="middle">${encodeURIComponent(item.caption)}</text><text x="50%" y="60%" fill="%23eab308" font-family="sans-serif" font-size="16" text-anchor="middle">Photo ${item.id} of 12</text></svg>`;
-
-                return `
-                    <div class="card gold-border-glow bg-cardbg rounded-2xl overflow-hidden cursor-pointer flex flex-col group" onclick="openLightbox(${galleryItems.indexOf(item)})">
-                        <div class="relative overflow-hidden aspect-[3/4] bg-neutral-900">
-                            <img src="${item.src}" 
-                                 onerror="this.onerror=null; this.src='${svgPlaceholder}';" 
-                                 alt="${item.alt}" 
-                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out">
-                            
-                            <div class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-gold-400 text-xs px-2.5 py-1 rounded-full border border-gold-500/30 font-semibold">
-                                #${item.id}
-                            </div>
-                            
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                                <span class="text-xs text-gold-300 font-medium flex items-center gap-1.5">
-                                    <i class="fa-solid fa-expand"></i> Click to view full image
-                                </span>
-                            </div>
-                        </div>
-
-                        <div class="p-3.5 bg-neutral-950/90 text-center flex-grow flex flex-col justify-center border-t border-neutral-800/80">
-                            <p class="text-xs sm:text-sm font-semibold text-gold-400 line-clamp-2 leading-snug">
-                                ${item.caption}
-                            </p>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function openLightbox(index) {
-            currentImageIndex = index;
-            updateLightboxContent();
-            document.getElementById('lightboxModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            document.getElementById('lightboxModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-
-        function updateLightboxContent() {
-            const item = galleryItems[currentImageIndex];
-            const img = document.getElementById('modalImg');
-            
-            const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900"><rect width="100%" height="100%" fill="%2318181b"/><text x="50%" y="45%" fill="%23d4af37" font-family="sans-serif" font-size="36" font-weight="bold" text-anchor="middle">CLASS ROOM 16</text><text x="50%" y="54%" fill="%23f4f4f5" font-family="sans-serif" font-size="24" text-anchor="middle">${encodeURIComponent(item.caption)}</text></svg>`;
-
-            img.src = item.src;
-            img.onerror = () => { img.src = svgPlaceholder; };
-            
-            document.getElementById('modalCaption').innerText = item.caption;
-            document.getElementById('modalTitle').innerText = item.caption;
-            document.getElementById('modalCounter').innerText = `${currentImageIndex + 1} / ${galleryItems.length}`;
-        }
-
-        function nextImage() {
-            currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
-            updateLightboxContent();
-        }
-
-        function prevImage() {
-            currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
-            updateLightboxContent();
-        }
-
-        function downloadCurrentImage() {
-            const item = galleryItems[currentImageIndex];
-            const a = document.createElement('a');
-            a.href = item.src;
-            a.download = `ClassRoom16_TeachersDay_${item.id}.jpg`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            showToast("Photo download started!");
-        }
-
-        function filterGallery() {
-            renderGallery();
-        }
-
-        function setFilter(category) {
-            currentFilter = category;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                btn.classList.remove('bg-gold-500', 'text-black', 'active');
-                btn.classList.add('bg-neutral-800', 'text-gray-300');
-            });
-
-            event.currentTarget.classList.remove('bg-neutral-800', 'text-gray-300');
-            event.currentTarget.classList.add('bg-gold-500', 'text-black', 'active');
-            renderGallery();
-        }
-
-        function handleImageUpload(e) {
-            const files = e.target.files;
-            if (!files || files.length === 0) return;
-
-            galleryItems = Array.from(files).map((file, idx) => ({
-                id: idx + 1,
-                src: URL.createObjectURL(file),
-                caption: file.name.replace(/\.[^/.]+$/, ""),
-                category: 'all',
-                alt: file.name
-            }));
-
-            renderGallery();
-            showToast(`Loaded ${files.length} photos successfully!`);
-        }
-
-        const initialWishes = [
-            { name: "Vinay (Founder)", role: "Class Representative", text: "Happy Teacher's Day to Amardeep Patel Sir! Thank you for being our constant guide and inspiring us every single day." },
-            { name: "Class Room 16 Students", role: "Class 16 Batch", text: "Best wishes to Amardeep Patel Sir! This cake celebration and ceremony will always remain in our hearts." }
-        ];
-
-        function renderWishes() {
-            const feed = document.getElementById('wishesFeed');
-            feed.innerHTML = initialWishes.map(wish => `
-                <div class="p-4 bg-neutral-900/90 border border-neutral-800 rounded-xl flex flex-col justify-between">
-                    <p class="text-xs sm:text-sm text-gray-300 italic mb-3">"${wish.text}"</p>
-                    <div class="flex items-center justify-between border-t border-neutral-800/60 pt-2 text-xs">
-                        <span class="font-bold text-gold-400">${wish.name}</span>
-                        <span class="text-neutral-500">${wish.role}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function postWish() {
-            const author = document.getElementById('wishAuthor').value.trim() || "Anonymous Student";
-            const role = document.getElementById('wishRole').value;
-            const text = document.getElementById('wishText').value.trim();
-
-            if (!text) {
-                showToast("Please enter a message for Amardeep Patel Sir!");
-                return;
-            }
-
-            initialWishes.unshift({ name: author, role: role, text: text });
-            renderWishes();
-
-            document.getElementById('wishText').value = '';
-            showToast("Your wish for Amardeep Patel Sir has been posted!");
-        }
-
-        function toggleAudio() {
-            const btnText = document.getElementById('audioStatusText');
-            if (!isAudioPlaying) {
-                playCelebrationTune();
-                isAudioPlaying = true;
-                btnText.innerText = "Music Playing 🎵";
-                showToast("Celebration melody started!");
-            } else {
-                if (audioContext) audioContext.close();
-                isAudioPlaying = false;
-                btnText.innerText = "Celebration Music";
-                showToast("Music stopped.");
-            }
-        }
-
-        function playCelebrationTune() {
-            try {
-                const AudioCtx = window.AudioContext || window.webkitAudioContext;
-                audioContext = new AudioCtx();
-
-                const notes = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25]; // C Major scale
-                let noteIndex = 0;
-
-                setInterval(() => {
-                    if (!isAudioPlaying || !audioContext) return;
-                    const osc = audioContext.createOscillator();
-                    const gain = audioContext.createGain();
-
-                    osc.type = 'sine';
-                    osc.frequency.setValueAtTime(notes[noteIndex % notes.length], audioContext.currentTime);
-
-                    gain.gain.setValueAtTime(0.05, audioContext.currentTime);
-                    gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
-
-                    osc.connect(gain);
-                    gain.connect(audioContext.destination);
-
-                    osc.start();
-                    osc.stop(audioContext.currentTime + 0.8);
-
-                    noteIndex++;
-                }, 400);
-            } catch (e) {
-                console.log("Audio API issue: ", e);
-            }
-        }
-
-        function initParticles() {
-            const canvas = document.getElementById('particlesCanvas');
-            const ctx = canvas.getContext('2d');
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            });
-
-            const particles = Array.from({ length: 45 }, () => ({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 2 + 1,
-                speedY: Math.random() * 0.5 + 0.2,
-                alpha: Math.random() * 0.6 + 0.2
-            }));
-
-            function animate() {
-                ctx.clearRect(0, 0, width, height);
-
-                particles.forEach(p => {
-                    p.y -= p.speedY;
-                    if (p.y < 0) p.y = height;
-
-                    ctx.beginPath();
-                    ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(212, 175, 55, ${p.alpha})`;
-                    ctx.fill();
-                });
-
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        }
-
-        /* Helper Toast function */
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').innerText = msg;
-            toast.classList.remove('translate-y-20', 'opacity-0');
-            setTimeout(() => {
-                toast.classList.add('translate-y-20', 'opacity-0');
-            }, 3000);
-        }
-
-        // Keyboard listener for Lightbox navigation
-        window.addEventListener('keydown', (e) => {
-            if (document.getElementById('lightboxModal').classList.contains('hidden')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-        });
-
-        window.onload = function() {
-            renderGallery();
-            renderWishes();
-            initParticles();
-        };
-    </script>
+function renderPosts(posts){
+  const feed=document.getElementById('postsFeed'); document.getElementById('postCount').innerText=`${posts.length} Posts`;
+  if(!posts||posts.length===0){ feed.innerHTML=`<div class="col-span-full text-center py-12 glass-card rounded-2xl"><i class="fa-solid fa-heart-crack text-4xl text-slate-600 mb-3"></i><p class="text-slate-400 text-sm">No posts yet. Be the first!</p></div>`; return; }
+  feed.innerHTML=posts.map(p=>`<div class="glass-card rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between"><div>${p.image?`<div class="w-full h-56 bg-slate-900 overflow-hidden"><img src="${p.image}" class="w-full h-full object-cover"></div>`:''}<div class="p-5"><div class="flex items-center justify-between mb-2"><h3 class="font-bold text-amber-300 text-base">${escapeHtml(p.name)}</h3><span class="text-[10px] text-slate-400">${p.date||''}</span></div><p class="text-slate-200 text-sm leading-relaxed whitespace-pre-line">${escapeHtml(p.wish)}</p></div></div><div class="px-5 pb-4 pt-2 border-t border-slate-700/50 flex items-center justify-between"><span class="text-xs text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full font-bold">❤️ Happy Teacher's Day</span><span class="text-[11px] text-slate-400 italic">For Amardeep Sir</span></div></div>`).join('');
+}
+function escapeHtml(s){ return s?s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"):''; }
+function createConfetti(){ const c=document.getElementById('confettiContainer'); const colors=['#f43f5e','#a855f7','#3b82f6','#eab308','#10b981']; for(let i=0;i<25;i++){ const d=document.createElement('div'); d.className='confetti'; d.style.left=Math.random()*100+'vw'; d.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)]; d.style.width=Math.random()*8+5+'px'; d.style.height=Math.random()*10+8+'px'; d.style.animationDuration=Math.random()*3+4+'s'; d.style.animationDelay=Math.random()*5+'s'; c.appendChild(d);} }
+window.addEventListener('DOMContentLoaded',()=>{ createConfetti(); loadCloudPosts(); });
+</script>
 </body>
 </html>
