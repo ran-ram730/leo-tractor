@@ -1,121 +1,211 @@
-<<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Teacher's Day | Amardeep Patel Sir</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Poppins', sans-serif; background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%); color: #f8fafc; min-height: 100vh; }
-   .cursive { font-family: 'Great Vibes', cursive; }
-   .glass-card { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); }
-   .glow-text { text-shadow: 0 0 15px rgba(236, 72, 153, 0.6), 0 0 30px rgba(168, 85, 247, 0.4); }
-    @keyframes float { 0% { transform: translateY(0px) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(360deg); opacity: 0; } }
-   .confetti { position: fixed; top: -10px; z-index: 10; animation: float 6s linear infinite; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teachers' Day - Amardeep Sir</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1e3c72;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background-color: #ff6b6b;
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Gallery Grid */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-body {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 500;
+        }
+
+        /* Wishes Section */
+        .wishes-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .wishes-box p {
+            font-size: 1.1rem;
+            color: #444;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1e3c72;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
 </head>
-<body class="p-3 sm:p-6 relative overflow-x-hidden">
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" id="confettiContainer"></div>
-  <header class="max-w-4xl mx-auto text-center mt-6 mb-10 z-10 relative">
-    <span class="bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block mb-3">🎉 Happy Teacher's Day 🎉</span>
-    <h1 class="text-4xl sm:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-pink-400 to-purple-400 glow-text mb-2">Amardeep Patel Sir</h1>
-    <p class="text-lg sm:text-xl text-slate-300 cursive font-medium">"A truly great teacher is hard to find, difficult to part with, and impossible to forget."</p>
-  </header>
-  <main class="max-w-4xl mx-auto space-y-8 z-10 relative">
-    <section class="glass-card rounded-2xl p-6 sm:p-8 shadow-2xl">
-      <div class="flex items-center space-x-3 mb-6">
-        <div class="p-3 bg-pink-500/20 text-pink-400 rounded-xl"><i class="fa-solid fa-pen-nib text-xl"></i></div>
-        <div><h2 class="text-xl font-bold text-white">Post Photo or Wish for Sir</h2><p class="text-xs text-slate-400">Enter security password <span class="text-amber-400 font-mono font-bold">225415</span> to submit permanently.</p></div>
-      </div>
-      <form id="postForm" onsubmit="handlePostSubmit(event)" class="space-y-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div><label class="block text-xs font-semibold text-slate-300 mb-1">Your Name / Student Name *</label><input type="text" id="studentName" required placeholder="e.g. Rahul Sharma" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"></div>
-          <div><label class="block text-xs font-semibold text-amber-300 mb-1"><i class="fa-solid fa-lock mr-1"></i> Security Password *</label><input type="password" id="postPassword" required placeholder="Enter Passcode (225415)" class="w-full bg-slate-800/80 border border-amber-500/40 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"></div>
+<body>
+
+    <header>
+        <h1>Happy Teachers' Day!</h1>
+        <p>Dedicated to our wonderful teacher — <strong>Amardeep Sir</strong></p>
+    </header>
+
+    <div class="container">
+        <h2 class="section-title">Celebration Memories</h2>
+        
+        <div class="gallery">
+            <div class="card">
+                <img src="630.jpg" alt="Amardeep Sir with Student">
+                <div class="card-body">
+                    <p>Special Moments with Amardeep Sir</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="659.jpg" alt="Cake Cutting Preparation">
+                <div class="card-body">
+                    <p>Teachers & Students Celebration</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="1409.jpg" alt="Classroom Group Photo">
+                <div class="card-body">
+                    <p>Group Photo in Classroom</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="658.jpg" alt="Students Selfie">
+                <div class="card-body">
+                    <p>Student Group Selfie</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="633.jpg" alt="Photo with Amardeep Sir">
+                <div class="card-body">
+                    <p>Memorable Moment with Sir</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="575.jpg" alt="Gift Presentation">
+                <div class="card-body">
+                    <p>Gifts & Celebrations</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="655.jpg" alt="Cake Cutting Event">
+                <div class="card-body">
+                    <p>Cake Cutting Ceremony</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="628.jpg" alt="Amardeep Sir & Student">
+                <div class="card-body">
+                    <p>Celebration at School</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="645.jpg" alt="Classroom Gathering">
+                <div class="card-body">
+                    <p>Enjoying Teachers' Day Together</p>
+                </div>
+            </div>
         </div>
-        <div><label class="block text-xs font-semibold text-slate-300 mb-1">Message / Wish for Amardeep Sir *</label><textarea id="wishMessage" rows="3" required placeholder="Write your heartfelt message here..." class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-pink-500 text-sm"></textarea></div>
-        <div><label class="block text-xs font-semibold text-slate-300 mb-1"><i class="fa-solid fa-image mr-1"></i> Upload Photo (Optional)</label><input type="file" id="photoInput" accept="image/*" onchange="previewImage(event)" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer"><div id="imagePreviewContainer" class="hidden mt-3 relative inline-block"><img id="imagePreview" src="" class="h-32 w-auto object-cover rounded-xl border border-pink-500/50 shadow-md"><button type="button" onclick="clearImage()" class="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs shadow-lg hover:bg-red-700"><i class="fa-solid fa-xmark"></i></button></div></div>
-        <div id="alertBox" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
-        <button type="submit" id="submitBtn" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-3 rounded-xl shadow-lg transition duration-200 flex items-center justify-center space-x-2 text-sm"><i class="fa-solid fa-paper-plane"></i><span>Post Wish Permanently</span></button>
-      </form>
-    </section>
-    <section>
-      <div class="flex items-center justify-between mb-6"><h2 class="text-2xl font-bold text-white flex items-center gap-2"><i class="fa-solid fa-heart text-pink-500"></i> Memories & Wishes Wall</h2><span id="postCount" class="bg-purple-500/20 text-purple-300 text-xs px-3 py-1 rounded-full font-mono border border-purple-500/30">Loading...</span></div>
-      <div id="postsFeed" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-    </section>
-  </main>
-  <footer class="max-w-4xl mx-auto text-center mt-16 pb-8 border-t border-slate-800 pt-6">
-    <p class="text-slate-400 text-sm font-medium">Thank you <span class="text-amber-300 font-bold">Amardeep Patel Sir</span> for guiding us!</p>
-    <div class="mt-3 inline-block bg-slate-900/90 border border-slate-700/80 px-5 py-2 rounded-full shadow-lg"><p class="text-xs text-slate-400"><i class="fa-solid fa-code text-pink-400 mr-1.5"></i> Designed & Developed by <span class="text-pink-400 font-bold text-sm tracking-wide">Vinay</span></p></div>
-  </footer>
 
-<script>
-// === 100% WORKING - NO API KEY NEEDED ===
-const API_URL = "https://api.npoint.io/b4a2c8e1f7d3a6b9c0e1";
+        <div class="wishes-box">
+            <h3>A Special Message for Amardeep Sir</h3>
+            <p>"Thank you Amardeep Sir for being a great teacher, mentor, and guide. Happy Teachers' Day!"</p>
+        </div>
+    </div>
 
-let currentCompressedImageBase64 = "";
+    <footer>
+        <p>Created with ❤️ by Students for Amardeep Sir</p>
+    </footer>
 
-function previewImage(event){
-  const file = event.target.files[0]; if(!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e){
-    const img = new Image();
-    img.onload = function(){
-      const canvas = document.createElement('canvas');
-      let w=img.width,h=img.height; const maxDim=500;
-      if(w>maxDim||h>maxDim){ if(w>h){ h=Math.round((h*maxDim)/w); w=maxDim; } else { w=Math.round((w*maxDim)/h); h=maxDim; } }
-      canvas.width=w; canvas.height=h;
-      canvas.getContext('2d').drawImage(img,0,0,w,h);
-      currentCompressedImageBase64 = canvas.toDataURL('image/jpeg',0.6);
-      document.getElementById('imagePreview').src=currentCompressedImageBase64;
-      document.getElementById('imagePreviewContainer').classList.remove('hidden');
-    }; img.src=e.target.result;
-  }; reader.readAsDataURL(file);
-}
-function clearImage(){ document.getElementById('photoInput').value=""; document.getElementById('imagePreview').src=""; document.getElementById('imagePreviewContainer').classList.add('hidden'); currentCompressedImageBase64=""; }
-function showAlert(msg,isSuccess=false){
-  const box=document.getElementById('alertBox'); box.classList.remove('hidden'); box.className="p-3 rounded-xl text-xs font-semibold border "+(isSuccess?"bg-green-500/20 text-green-300 border-green-500/30":"bg-red-500/20 text-red-300 border-red-500/30"); box.innerHTML=msg; setTimeout(()=>box.classList.add('hidden'),4000);
-}
-
-async function loadCloudPosts(){
-  try{
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    renderPosts(data.posts||[]);
-  }catch(err){
-    const local = JSON.parse(localStorage.getItem('teachers_day_posts')||'[]');
-    renderPosts(local);
-  }
-}
-
-async function handlePostSubmit(e){
-  e.preventDefault();
-  const name=document.getElementById('studentName').value.trim();
-  const pass=document.getElementById('postPassword').value.trim();
-  const wish=document.getElementById('wishMessage').value.trim();
-  if(pass!=="225415"){ showAlert("❌ Galat Password!",false); return; }
-  const btn=document.getElementById('submitBtn'); btn.disabled=true; btn.innerHTML=`<i class="fa-solid fa-spinner fa-spin"></i> <span>Saving to All Phones...</span>`;
-  const newPost={ id:"post_"+Date.now(), name, wish, image:currentCompressedImageBase64||null, date:new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'}) };
-  try{
-    let currentPosts=[]; try{ const r=await fetch(API_URL); const d=await r.json(); currentPosts=d.posts||[]; }catch(e){ currentPosts=JSON.parse(localStorage.getItem('teachers_day_posts')||'[]'); }
-    currentPosts.unshift(newPost);
-    await fetch(API_URL,{ method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({posts:currentPosts}) });
-    localStorage.setItem('teachers_day_posts',JSON.stringify(currentPosts));
-    showAlert("✅ Saved! Sabke phone me dikhegi",true);
-    document.getElementById('postForm').reset(); clearImage(); renderPosts(currentPosts);
-  }catch(err){ showAlert("⚠️ Error: "+err.message,false); }
-  finally{ btn.disabled=false; btn.innerHTML=`<i class="fa-solid fa-paper-plane"></i> <span>Post Wish Permanently</span>`; }
-}
-
-function renderPosts(posts){
-  const feed=document.getElementById('postsFeed'); document.getElementById('postCount').innerText=`${posts.length} Posts`;
-  if(!posts||posts.length===0){ feed.innerHTML=`<div class="col-span-full text-center py-12 glass-card rounded-2xl"><i class="fa-solid fa-heart-crack text-4xl text-slate-600 mb-3"></i><p class="text-slate-400 text-sm">No posts yet. Be the first!</p></div>`; return; }
-  feed.innerHTML=posts.map(p=>`<div class="glass-card rounded-2xl overflow-hidden shadow-xl flex flex-col justify-between"><div>${p.image?`<div class="w-full h-56 bg-slate-900 overflow-hidden"><img src="${p.image}" class="w-full h-full object-cover"></div>`:''}<div class="p-5"><div class="flex items-center justify-between mb-2"><h3 class="font-bold text-amber-300 text-base">${escapeHtml(p.name)}</h3><span class="text-[10px] text-slate-400">${p.date||''}</span></div><p class="text-slate-200 text-sm leading-relaxed whitespace-pre-line">${escapeHtml(p.wish)}</p></div></div><div class="px-5 pb-4 pt-2 border-t border-slate-700/50 flex items-center justify-between"><span class="text-xs text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full font-bold">❤️ Happy Teacher's Day</span><span class="text-[11px] text-slate-400 italic">For Amardeep Sir</span></div></div>`).join('');
-}
-function escapeHtml(s){ return s?s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"):''; }
-function createConfetti(){ const c=document.getElementById('confettiContainer'); const colors=['#f43f5e','#a855f7','#3b82f6','#eab308','#10b981']; for(let i=0;i<25;i++){ const d=document.createElement('div'); d.className='confetti'; d.style.left=Math.random()*100+'vw'; d.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)]; d.style.width=Math.random()*8+5+'px'; d.style.height=Math.random()*10+8+'px'; d.style.animationDuration=Math.random()*3+4+'s'; d.style.animationDelay=Math.random()*5+'s'; c.appendChild(d);} }
-window.addEventListener('DOMContentLoaded',()=>{ createConfetti(); loadCloudPosts(); });
-</script>
 </body>
 </html>
