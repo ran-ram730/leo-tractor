@@ -1,10 +1,9 @@
- ```html
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="hi" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VC Computer Institute - Virtual Desktop OS</title>
+  <title>VC Computer Institute - Virtual Web OS</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -38,9 +37,9 @@
 
     /* Custom Glassmorphism Styles */
     .glass-panel {
-      background: rgba(15, 23, 42, 0.78);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
@@ -52,8 +51,17 @@
 
     /* Window Shadow & Glow Effects */
     .os-window {
-      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
-      transition: opacity 0.2s ease, transform 0.2s ease;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 1px 1px rgba(255, 255, 255, 0.1);
+      transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), opacity 0.15s ease;
+    }
+
+    /* Selection Box */
+    .selection-box {
+      border: 1px solid rgba(99, 102, 241, 0.8);
+      background: rgba(99, 102, 241, 0.2);
+      position: absolute;
+      pointer-events: none;
+      z-index: 5;
     }
 
     /* Custom Scrollbars */
@@ -82,7 +90,7 @@
     }
   </style>
 </head>
-<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden select-none">
+<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden select-none" oncontextmenu="return false;">
 
   <!-- 1. SPLASH / BOOT SCREEN (VC Computer Institute Intro) -->
   <div id="bootScreen" class="fixed inset-0 z-[9999] bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 flex flex-col items-center justify-center p-6 text-center transition-all duration-700">
@@ -102,38 +110,57 @@
         VC Computer Institute
       </h1>
       <p class="text-xs uppercase tracking-widest font-semibold text-indigo-400 mb-6">
-        Virtual Desktop Operating System
+        Virtual Desktop Operating System v3.5
       </p>
 
       <!-- Included Features List -->
       <div class="w-full bg-slate-800/80 rounded-xl p-4 text-xs text-slate-300 space-y-2.5 mb-8 border border-slate-700/50 text-left">
-        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>MS Word, Excel & PowerPoint Suite</span></div>
-        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>MS Paint Studio & Full Photoshop Studio</span></div>
-        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Tally Prime ERP & Billing Manager</span></div>
-        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Retro Arcade & HTML5 Games Engine</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Full Desktop Environment & Right Click Menu</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>File Manager, Terminal (CMD) & Calculator</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>MS Office Suite, Photoshop & Tally Prime</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Wallpaper Customizer & System Settings</span></div>
       </div>
 
       <!-- Continue Button to Start Desktop -->
       <button onclick="startSystem()" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 active:scale-95 transition duration-200 flex items-center justify-center space-x-3 group">
-        <span>CONTINUE TO DESKTOP</span>
-        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        <span>BOOT INTO SYSTEM</span>
+        <i class="fa-solid fa-power-off group-hover:rotate-90 transition-transform"></i>
       </button>
 
-      <p class="text-[11px] text-slate-500 mt-5">System Ready • Click Continue to Load OS Workspace</p>
+      <p class="text-[11px] text-slate-500 mt-5">System Ready • Real PC Desktop Experience</p>
     </div>
   </div>
 
   <!-- 2. DESKTOP MAIN ENVIRONMENT -->
-  <div id="desktopEnv" class="relative w-full h-full bg-cover bg-center overflow-hidden transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');">
+  <div id="desktopEnv" class="relative w-full h-full bg-cover bg-center overflow-hidden transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');" onclick="closeContextMenu()">
     
     <!-- Background Overlay Tint -->
-    <div class="absolute inset-0 bg-slate-950/25 backdrop-brightness-95"></div>
+    <div id="desktopOverlay" class="absolute inset-0 bg-slate-950/20 backdrop-brightness-95"></div>
+
+    <!-- Selection Area Dynamic Element -->
+    <div id="selectionBox" class="selection-box hidden"></div>
 
     <!-- Desktop Icons Grid -->
-    <div class="relative z-10 p-6 grid grid-flow-col grid-rows-6 gap-4 w-max h-[calc(100vh-60px)]">
+    <div id="desktopIcons" class="relative z-10 p-6 grid grid-flow-col grid-rows-6 gap-4 w-max h-[calc(100vh-60px)]">
       
+      <!-- File Explorer Icon -->
+      <div onclick="openApp('explorer')" ondblclick="openApp('explorer')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-amber-500/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-folder-open text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">My Computer</span>
+      </div>
+
+      <!-- Terminal / CMD Icon -->
+      <div onclick="openApp('terminal')" ondblclick="openApp('terminal')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-slate-800/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform border border-slate-700">
+          <i class="fa-solid fa-terminal text-2xl text-emerald-400"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Terminal</span>
+      </div>
+
       <!-- MS Word Icon -->
-      <div onclick="openApp('word')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('word')" ondblclick="openApp('word')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-blue-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-file-word text-2xl text-white"></i>
         </div>
@@ -141,7 +168,7 @@
       </div>
 
       <!-- MS Excel Icon -->
-      <div onclick="openApp('excel')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('excel')" ondblclick="openApp('excel')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-emerald-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-file-excel text-2xl text-white"></i>
         </div>
@@ -149,7 +176,7 @@
       </div>
 
       <!-- PowerPoint Icon -->
-      <div onclick="openApp('ppt')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('ppt')" ondblclick="openApp('ppt')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-amber-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-file-powerpoint text-2xl text-white"></i>
         </div>
@@ -157,7 +184,7 @@
       </div>
 
       <!-- Paint Studio Icon -->
-      <div onclick="openApp('paint')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('paint')" ondblclick="openApp('paint')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-pink-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-palette text-2xl text-white"></i>
         </div>
@@ -165,7 +192,7 @@
       </div>
 
       <!-- Photoshop Icon -->
-      <div onclick="openApp('photoshop')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('photoshop')" ondblclick="openApp('photoshop')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-cyan-700/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-image text-2xl text-white"></i>
         </div>
@@ -173,19 +200,35 @@
       </div>
 
       <!-- Tally Prime Icon -->
-      <div onclick="openApp('tally')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('tally')" ondblclick="openApp('tally')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-yellow-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-calculator text-2xl text-white"></i>
         </div>
         <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Tally Prime</span>
       </div>
 
+      <!-- Calculator Icon -->
+      <div onclick="openApp('calc')" ondblclick="openApp('calc')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-indigo-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-calculator text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Calculator</span>
+      </div>
+
       <!-- Arcade Games Icon -->
-      <div onclick="openApp('games')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+      <div onclick="openApp('games')" ondblclick="openApp('games')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
         <div class="w-12 h-12 bg-purple-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
           <i class="fa-solid fa-gamepad text-2xl text-white"></i>
         </div>
         <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Arcade Games</span>
+      </div>
+
+      <!-- Settings Icon -->
+      <div onclick="openApp('settings')" ondblclick="openApp('settings')" class="desktop-icon flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-slate-700/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-gear text-2xl text-slate-200"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Settings</span>
       </div>
 
     </div>
@@ -193,39 +236,82 @@
     <!-- WINDOW CONTAINERS AREA -->
     <div id="windowContainer" class="absolute inset-0 pb-16 pointer-events-none z-20"></div>
 
+    <!-- RIGHT CLICK CONTEXT MENU -->
+    <div id="contextMenu" class="hidden absolute z-50 w-52 glass-panel rounded-xl py-2 shadow-2xl border border-slate-700 text-xs text-slate-200">
+      <button onclick="refreshDesktop(); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center justify-between text-left">
+        <span><i class="fa-solid fa-rotate-right mr-2 text-indigo-400"></i> Refresh</span>
+        <span class="text-[10px] text-slate-400">F5</span>
+      </button>
+      <div class="h-[1px] bg-slate-700/80 my-1"></div>
+      <button onclick="openApp('explorer'); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center text-left">
+        <i class="fa-solid fa-folder mr-2 text-amber-400"></i> Open File Explorer
+      </button>
+      <button onclick="openApp('terminal'); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center text-left">
+        <i class="fa-solid fa-terminal mr-2 text-emerald-400"></i> Open Terminal (CMD)
+      </button>
+      <button onclick="openApp('word'); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center text-left">
+        <i class="fa-solid fa-file-lines mr-2 text-blue-400"></i> New Document
+      </button>
+      <div class="h-[1px] bg-slate-700/80 my-1"></div>
+      <button onclick="openApp('settings'); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center text-left">
+        <i class="fa-solid fa-palette mr-2 text-purple-400"></i> Change Wallpaper
+      </button>
+      <button onclick="openApp('settings'); closeContextMenu();" class="w-full px-4 py-2 hover:bg-indigo-600/50 flex items-center text-left">
+        <i class="fa-solid fa-sliders mr-2 text-slate-400"></i> Display Settings
+      </button>
+    </div>
+
     <!-- START MENU MODAL -->
-    <div id="startMenu" class="hidden absolute bottom-16 left-4 z-50 w-80 max-h-[480px] glass-panel rounded-2xl p-4 shadow-2xl border border-slate-700/80 animate-in fade-in slide-in-from-bottom-5 duration-200">
+    <div id="startMenu" class="hidden absolute bottom-16 left-4 z-50 w-84 max-h-[500px] glass-panel rounded-2xl p-4 shadow-2xl border border-slate-700/80 transition-all">
       <div class="flex items-center space-x-3 pb-3 border-b border-slate-700/80">
         <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white shadow">VC</div>
         <div>
-          <h4 class="text-sm font-bold text-white">VC Computer Institute</h4>
+          <h4 class="text-sm font-bold text-white">VC Computer Institute OS</h4>
           <p class="text-[10px] text-slate-400">admin@vc-institute.edu</p>
         </div>
       </div>
 
-      <div class="py-3">
-        <p class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2 px-1">Installed Software</p>
-        <div class="space-y-1">
-          <button onclick="openApp('word'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+      <!-- Quick Search Bar -->
+      <div class="my-3 relative">
+        <input type="text" id="startSearch" onkeyup="filterStartMenu()" placeholder="Type to search apps..." class="w-full bg-slate-900/90 border border-slate-700 rounded-xl py-1.5 pl-8 pr-3 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500">
+        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-slate-400 text-xs"></i>
+      </div>
+
+      <div class="py-2 max-h-[260px] overflow-y-auto">
+        <p class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2 px-1">Applications & Tools</p>
+        <div id="startAppsList" class="space-y-1">
+          <button onclick="openApp('explorer'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-folder-open text-amber-400 text-base w-5"></i> <span>My Computer / Explorer</span>
+          </button>
+          <button onclick="openApp('terminal'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-terminal text-emerald-400 text-base w-5"></i> <span>Command Prompt (CMD)</span>
+          </button>
+          <button onclick="openApp('word'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-file-word text-blue-400 text-base w-5"></i> <span>MS Word Document Editor</span>
           </button>
-          <button onclick="openApp('excel'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('excel'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-file-excel text-emerald-400 text-base w-5"></i> <span>MS Excel Spreadsheet Grid</span>
           </button>
-          <button onclick="openApp('ppt'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('ppt'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-file-powerpoint text-amber-400 text-base w-5"></i> <span>PowerPoint Presenter</span>
           </button>
-          <button onclick="openApp('paint'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('paint'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-palette text-pink-400 text-base w-5"></i> <span>MS Paint Studio</span>
           </button>
-          <button onclick="openApp('photoshop'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('photoshop'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-image text-cyan-400 text-base w-5"></i> <span>Photoshop Image Suite</span>
           </button>
-          <button onclick="openApp('tally'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('tally'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-calculator text-yellow-400 text-base w-5"></i> <span>Tally Prime Accounting</span>
           </button>
-          <button onclick="openApp('games'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+          <button onclick="openApp('calc'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-calculator text-indigo-400 text-base w-5"></i> <span>Calculator</span>
+          </button>
+          <button onclick="openApp('games'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
             <i class="fa-solid fa-gamepad text-purple-400 text-base w-5"></i> <span>Arcade Games Hub</span>
+          </button>
+          <button onclick="openApp('settings'); toggleStartMenu();" class="app-item w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-gear text-slate-400 text-base w-5"></i> <span>System Settings</span>
           </button>
         </div>
       </div>
@@ -234,7 +320,7 @@
         <button onclick="resetDesktop()" class="text-xs text-rose-400 hover:text-rose-300 font-medium flex items-center space-x-1.5 transition">
           <i class="fa-solid fa-power-off"></i> <span>Restart System</span>
         </button>
-        <span class="text-[10px] text-slate-500">VC OS v3.0</span>
+        <span class="text-[10px] text-slate-500">VC OS v3.5</span>
       </div>
     </div>
 
@@ -243,7 +329,7 @@
       
       <!-- Left Controls: Start Menu Button -->
       <div class="flex items-center space-x-3">
-        <button onclick="toggleStartMenu()" class="h-10 px-4 bg-indigo-600/80 hover:bg-indigo-600 active:scale-95 text-white font-bold rounded-xl shadow-lg flex items-center space-x-2 transition">
+        <button onclick="toggleStartMenu()" class="h-10 px-4 bg-indigo-600/90 hover:bg-indigo-600 active:scale-95 text-white font-bold rounded-xl shadow-lg flex items-center space-x-2 transition">
           <i class="fa-solid fa-shapes text-sm"></i>
           <span class="text-xs tracking-wide">Start</span>
         </button>
@@ -254,7 +340,7 @@
 
       <!-- Right Controls: System Tray Clock & Settings -->
       <div class="flex items-center space-x-4">
-        <div class="text-right">
+        <div class="text-right cursor-pointer" onclick="openApp('settings')">
           <div id="clockTime" class="text-xs font-semibold text-slate-200">12:00 PM</div>
           <div id="clockDate" class="text-[10px] text-slate-400">Oct 18, 2026</div>
         </div>
@@ -282,6 +368,7 @@
         boot.style.display = 'none';
       }, 700);
       updateClock();
+      setupSelectionBox();
     }
 
     // Reset Desktop / Restart
@@ -292,6 +379,63 @@
         boot.classList.remove('opacity-0', 'pointer-events-none');
       }, 50);
       toggleStartMenu(true);
+    }
+
+    // Refresh Desktop Animation
+    function refreshDesktop() {
+      const icons = document.getElementById('desktopIcons');
+      icons.style.opacity = '0.3';
+      setTimeout(() => icons.style.opacity = '1', 200);
+    }
+
+    // Context Menu Logic
+    document.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      const menu = document.getElementById('contextMenu');
+      menu.style.left = `${e.clientX}px`;
+      menu.style.top = `${e.clientY}px`;
+      menu.classList.remove('hidden');
+    });
+
+    function closeContextMenu() {
+      document.getElementById('contextMenu').classList.add('hidden');
+    }
+
+    // Selection Box Handler
+    function setupSelectionBox() {
+      const desktop = document.getElementById('desktopEnv');
+      const box = document.getElementById('selectionBox');
+      let startX, startY, isSelecting = false;
+
+      desktop.addEventListener('mousedown', (e) => {
+        if (e.target !== desktop && e.target !== document.getElementById('desktopOverlay')) return;
+        isSelecting = true;
+        startX = e.clientX;
+        startY = e.clientY;
+        box.style.left = `${startX}px`;
+        box.style.top = `${startY}px`;
+        box.style.width = '0px';
+        box.style.height = '0px';
+        box.classList.remove('hidden');
+      });
+
+      desktop.addEventListener('mousemove', (e) => {
+        if (!isSelecting) return;
+        const currentX = e.clientX;
+        const currentY = e.clientY;
+        const width = Math.abs(currentX - startX);
+        const height = Math.abs(currentY - startY);
+
+        box.style.width = `${width}px`;
+        box.style.height = `${height}px`;
+        box.style.left = `${Math.min(currentX, startX)}px`;
+        box.style.top = `${Math.min(currentY, startY)}px`;
+      });
+
+      desktop.addEventListener('mouseup', () => {
+        isSelecting = false;
+        box.classList.add('hidden');
+      });
     }
 
     // Clock Updater
@@ -312,9 +456,21 @@
       }
     }
 
+    function filterStartMenu() {
+      const query = document.getElementById('startSearch').value.toLowerCase();
+      const items = document.querySelectorAll('#startAppsList .app-item');
+      items.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        item.style.display = text.includes(query) ? 'flex' : 'none';
+      });
+    }
+
     // Window Management Core
     function openApp(appId) {
       if (openWindows[appId]) {
+        if (openWindows[appId].el.classList.contains('hidden')) {
+          openWindows[appId].el.classList.remove('hidden');
+        }
         bringToFront(appId);
         return;
       }
@@ -323,25 +479,29 @@
       const container = document.getElementById('windowContainer');
       const windowEl = document.createElement('div');
       windowEl.id = `win_${appId}`;
-      windowEl.className = `os-window pointer-events-auto absolute glass-panel rounded-2xl border border-slate-700 flex flex-col overflow-hidden transition-all`;
+      windowEl.className = `os-window pointer-events-auto absolute glass-panel rounded-2xl border border-slate-700 flex flex-col overflow-hidden`;
       windowEl.style.zIndex = zIndexCounter;
 
       // Set window initial dimensions & position based on App
       const offset = (Object.keys(openWindows).length * 25) % 150;
       windowEl.style.top = `${40 + offset}px`;
       windowEl.style.left = `${40 + offset}px`;
-      windowEl.style.width = '850px';
-      windowEl.style.height = '560px';
+      windowEl.style.width = appId === 'calc' ? '320px' : '850px';
+      windowEl.style.height = appId === 'calc' ? '460px' : '560px';
 
       // Title & Icons lookup table
       const appConfigs = {
+        explorer: { title: 'File Explorer - My Computer', icon: 'fa-folder-open', color: 'text-amber-400' },
+        terminal: { title: 'Command Prompt (CMD)', icon: 'fa-terminal', color: 'text-emerald-400' },
         word: { title: 'MS Word Document Editor', icon: 'fa-file-word', color: 'text-blue-400' },
         excel: { title: 'MS Excel Spreadsheet Studio', icon: 'fa-file-excel', color: 'text-emerald-400' },
         ppt: { title: 'PowerPoint Presentation Builder', icon: 'fa-file-powerpoint', color: 'text-amber-400' },
         paint: { title: 'MS Paint Creative Studio', icon: 'fa-palette', color: 'text-pink-400' },
         photoshop: { title: 'Photoshop Image Editor (Photopea)', icon: 'fa-image', color: 'text-cyan-400' },
         tally: { title: 'Tally Prime ERP & Ledger Manager', icon: 'fa-calculator', color: 'text-yellow-400' },
-        games: { title: 'Retro Arcade Gaming Hub', icon: 'fa-gamepad', color: 'text-purple-400' }
+        calc: { title: 'Calculator', icon: 'fa-calculator', color: 'text-indigo-400' },
+        games: { title: 'Retro Arcade Gaming Hub', icon: 'fa-gamepad', color: 'text-purple-400' },
+        settings: { title: 'System Settings', icon: 'fa-gear', color: 'text-slate-400' }
       };
 
       const config = appConfigs[appId] || { title: 'Application', icon: 'fa-window-maximize', color: 'text-indigo-400' };
@@ -355,9 +515,9 @@
             <span class="text-xs font-semibold text-slate-200">${config.title}</span>
           </div>
           <div class="flex items-center space-x-2">
-            <button onclick="minimizeWindow('${appId}')" class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition" title="Minimize"></button>
-            <button onclick="maximizeWindow('${appId}')" class="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition" title="Maximize"></button>
-            <button onclick="closeWindow('${appId}')" class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-400 transition" title="Close"></button>
+            <button onclick="minimizeWindow('${appId}')" class="w-3.5 h-3.5 rounded-full bg-yellow-500 hover:bg-yellow-400 transition" title="Minimize"></button>
+            <button onclick="maximizeWindow('${appId}')" class="w-3.5 h-3.5 rounded-full bg-emerald-500 hover:bg-emerald-400 transition" title="Maximize"></button>
+            <button onclick="closeWindow('${appId}')" class="w-3.5 h-3.5 rounded-full bg-rose-500 hover:bg-rose-400 transition" title="Close"></button>
           </div>
         </div>
         <!-- Window Application Content Body -->
@@ -381,6 +541,7 @@
       // Trigger custom initialization for canvas/grid apps
       if (appId === 'paint') setTimeout(initPaintApp, 100);
       if (appId === 'excel') setTimeout(initExcelApp, 100);
+      if (appId === 'terminal') setTimeout(initTerminalApp, 100);
     }
 
     function bringToFront(appId) {
@@ -473,6 +634,100 @@
 
     function getAppContent(appId) {
       switch(appId) {
+        case 'explorer':
+          return `
+            <div class="h-full flex flex-col bg-slate-950 text-slate-200 text-xs">
+              <div class="p-2 bg-slate-900 border-b border-slate-800 flex items-center space-x-2">
+                <button class="p-1 bg-slate-800 rounded hover:bg-slate-700"><i class="fa-solid fa-arrow-left"></i></button>
+                <button class="p-1 bg-slate-800 rounded hover:bg-slate-700"><i class="fa-solid fa-arrow-right"></i></button>
+                <input type="text" value="C:\\Users\\Admin\\Documents" class="flex-1 bg-slate-950 border border-slate-800 rounded px-2 py-1 text-slate-300">
+              </div>
+              <div class="flex-1 flex overflow-hidden">
+                <div class="w-48 bg-slate-900/50 border-r border-slate-800 p-2 space-y-1">
+                  <div class="font-bold text-slate-400 mb-2">Quick Access</div>
+                  <div class="p-1.5 hover:bg-indigo-600/30 rounded cursor-pointer flex items-center space-x-2"><i class="fa-solid fa-desktop text-indigo-400"></i><span>Desktop</span></div>
+                  <div class="p-1.5 hover:bg-indigo-600/30 rounded cursor-pointer flex items-center space-x-2"><i class="fa-solid fa-file text-blue-400"></i><span>Documents</span></div>
+                  <div class="p-1.5 hover:bg-indigo-600/30 rounded cursor-pointer flex items-center space-x-2"><i class="fa-solid fa-download text-emerald-400"></i><span>Downloads</span></div>
+                  <div class="p-1.5 hover:bg-indigo-600/30 rounded cursor-pointer flex items-center space-x-2"><i class="fa-solid fa-hard-drive text-amber-400"></i><span>Local Disk (C:)</span></div>
+                </div>
+                <div class="flex-1 p-4 grid grid-cols-4 gap-4 auto-rows-max overflow-y-auto">
+                  <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center hover:border-indigo-500 cursor-pointer">
+                    <i class="fa-solid fa-folder text-4xl text-amber-400 mb-2"></i>
+                    <span>Course Materials</span>
+                  </div>
+                  <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center hover:border-indigo-500 cursor-pointer">
+                    <i class="fa-solid fa-file-word text-4xl text-blue-400 mb-2"></i>
+                    <span>Assignment.docx</span>
+                  </div>
+                  <div class="p-3 bg-slate-900 rounded-xl border border-slate-800 flex flex-col items-center hover:border-indigo-500 cursor-pointer">
+                    <i class="fa-solid fa-file-excel text-4xl text-emerald-400 mb-2"></i>
+                    <span>Fee_Records.xlsx</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+        case 'terminal':
+          return `
+            <div class="h-full flex flex-col bg-black text-emerald-400 font-mono text-xs p-3">
+              <div id="terminalOutput" class="flex-1 overflow-y-auto space-y-1">
+                <div>VC Computer Institute OS [Version 3.5.0]</div>
+                <div>(c) VC Corporation. All rights reserved.</div>
+                <div class="mt-2 text-slate-400">Type 'help' to view available system commands.</div>
+              </div>
+              <div class="flex items-center space-x-2 mt-2">
+                <span class="text-white">C:\\Users\\Admin&gt;</span>
+                <input id="terminalInput" type="text" class="flex-1 bg-transparent border-none outline-none text-emerald-400 font-mono" autofocus>
+              </div>
+            </div>
+          `;
+
+        case 'calc':
+          return `
+            <div class="h-full bg-slate-950 p-4 flex flex-col text-white">
+              <input id="calcDisplay" type="text" value="0" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-right text-2xl font-mono mb-4 text-emerald-400 outline-none">
+              <div class="grid grid-cols-4 gap-2 flex-1">
+                <button onclick="calcClear()" class="bg-rose-600/80 hover:bg-rose-600 rounded-xl font-bold">C</button>
+                <button onclick="calcPress('/')" class="bg-slate-800 hover:bg-slate-700 rounded-xl font-bold">/</button>
+                <button onclick="calcPress('*')" class="bg-slate-800 hover:bg-slate-700 rounded-xl font-bold">*</button>
+                <button onclick="calcPress('-')" class="bg-slate-800 hover:bg-slate-700 rounded-xl font-bold">-</button>
+                <button onclick="calcPress('7')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">7</button>
+                <button onclick="calcPress('8')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">8</button>
+                <button onclick="calcPress('9')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">9</button>
+                <button onclick="calcPress('+')" class="bg-slate-800 hover:bg-slate-700 rounded-xl font-bold">+</button>
+                <button onclick="calcPress('4')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">4</button>
+                <button onclick="calcPress('5')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">5</button>
+                <button onclick="calcPress('6')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">6</button>
+                <button onclick="calcEval()" class="bg-indigo-600 hover:bg-indigo-500 row-span-2 rounded-xl font-bold">=</button>
+                <button onclick="calcPress('1')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">1</button>
+                <button onclick="calcPress('2')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">2</button>
+                <button onclick="calcPress('3')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">3</button>
+                <button onclick="calcPress('0')" class="col-span-2 bg-slate-900 hover:bg-slate-800 rounded-xl">0</button>
+                <button onclick="calcPress('.')" class="bg-slate-900 hover:bg-slate-800 rounded-xl">.</button>
+              </div>
+            </div>
+          `;
+
+        case 'settings':
+          return `
+            <div class="h-full flex bg-slate-950 text-slate-200 text-xs">
+              <div class="w-48 bg-slate-900 p-3 space-y-2 border-r border-slate-800">
+                <div class="font-bold text-white mb-2">Settings</div>
+                <div class="p-2 bg-indigo-600 rounded cursor-pointer font-medium"><i class="fa-solid fa-palette mr-2"></i> Personalization</div>
+                <div class="p-2 hover:bg-slate-800 rounded cursor-pointer"><i class="fa-solid fa-desktop mr-2"></i> System Info</div>
+              </div>
+              <div class="flex-1 p-6 space-y-4 overflow-y-auto">
+                <h3 class="text-sm font-bold text-white">Change Desktop Wallpaper</h3>
+                <div class="grid grid-cols-3 gap-3">
+                  <img onclick="changeWallpaper('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=300" class="rounded-lg cursor-pointer border-2 border-transparent hover:border-indigo-500 object-cover h-24 w-full">
+                  <img onclick="changeWallpaper('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2564&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=300" class="rounded-lg cursor-pointer border-2 border-transparent hover:border-indigo-500 object-cover h-24 w-full">
+                  <img onclick="changeWallpaper('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2564&auto=format&fit=crop')" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=300" class="rounded-lg cursor-pointer border-2 border-transparent hover:border-indigo-500 object-cover h-24 w-full">
+                </div>
+              </div>
+            </div>
+          `;
+
         case 'word':
           return `
             <div class="h-full flex flex-col bg-slate-100 text-slate-900">
@@ -579,7 +834,6 @@
                 <span>GATEWAY OF TALLY</span>
               </div>
               <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto">
-                <!-- Ledger Form -->
                 <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
                   <h3 class="text-sm font-bold text-yellow-400">Create Accounting Voucher Entry</h3>
                   <div>
@@ -603,7 +857,6 @@
                   <button onclick="addTallyVoucher()" class="w-full py-2 bg-yellow-600 hover:bg-yellow-500 font-bold text-slate-950 rounded text-xs transition">Post Voucher Entry</button>
                 </div>
                 
-                <!-- Ledger Summary -->
                 <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col">
                   <h3 class="text-sm font-bold text-slate-200 mb-3">Voucher Ledger Feed</h3>
                   <div id="tallyLedger" class="flex-1 space-y-2 overflow-y-auto max-h-[220px] text-xs">
@@ -642,11 +895,69 @@
           `;
 
         default:
-          return `<div class="p-6 text-white text-xs">Application content loading...</div>`;
+          return `<div class="p-6 text-white text-xs">Application loading...</div>`;
       }
     }
 
-    // Paint App Canvas Engine
+    // Helper Functions
+    function changeWallpaper(url) {
+      document.getElementById('desktopEnv').style.backgroundImage = `url('${url}')`;
+    }
+
+    // Calculator Functions
+    function calcPress(val) {
+      const display = document.getElementById('calcDisplay');
+      if (display.value === '0') display.value = val;
+      else display.value += val;
+    }
+    function calcClear() {
+      document.getElementById('calcDisplay').value = '0';
+    }
+    function calcEval() {
+      const display = document.getElementById('calcDisplay');
+      try { display.value = eval(display.value); } catch(e) { display.value = 'Error'; }
+    }
+
+    // Terminal Command App Logic
+    function initTerminalApp() {
+      const input = document.getElementById('terminalInput');
+      const output = document.getElementById('terminalOutput');
+      if (!input) return;
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const cmd = input.value.trim().toLowerCase();
+          const line = document.createElement('div');
+          line.innerHTML = `<span class="text-white">C:\\Users\\Admin&gt;</span> ${input.value}`;
+          output.appendChild(line);
+
+          let res = document.createElement('div');
+          res.className = 'text-slate-300 mb-1';
+
+          if (cmd === 'help') {
+            res.innerText = 'Commands: help, dir, date, clear, echo [text], color [code], ping [host]';
+          } else if (cmd === 'dir') {
+            res.innerText = 'Documents  Downloads  Pictures  Desktop  Assignment.docx';
+          } else if (cmd === 'date') {
+            res.innerText = new Date().toString();
+          } else if (cmd === 'clear') {
+            output.innerHTML = '';
+            input.value = '';
+            return;
+          } else if (cmd.startsWith('echo ')) {
+            res.innerText = cmd.replace('echo ', '');
+          } else {
+            res.innerText = `'${cmd}' is not recognized as an internal or external command.`;
+          }
+
+          output.appendChild(res);
+          input.value = '';
+          output.scrollTop = output.scrollHeight;
+        }
+      });
+    }
+
+    // Paint Canvas Logic
     function initPaintApp() {
       const canvas = document.getElementById('paintCanvas');
       if (!canvas) return;
@@ -656,24 +967,14 @@
       const ctx = canvas.getContext('2d');
       let painting = false;
 
-      function startPosition(e) {
-        painting = true;
-        draw(e);
-      }
-      function finishedPosition() {
-        painting = false;
-        ctx.beginPath();
-      }
+      function startPosition(e) { painting = true; draw(e); }
+      function finishedPosition() { painting = false; ctx.beginPath(); }
       function draw(e) {
         if (!painting) return;
         const rect = canvas.getBoundingClientRect();
-        const color = document.getElementById('paintColor').value;
-        const size = document.getElementById('paintSize').value;
-
-        ctx.lineWidth = size;
+        ctx.lineWidth = document.getElementById('paintSize').value;
         ctx.lineCap = 'round';
-        ctx.strokeStyle = color;
-
+        ctx.strokeStyle = document.getElementById('paintColor').value;
         ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
         ctx.stroke();
         ctx.beginPath();
@@ -687,13 +988,10 @@
 
     function clearPaintCanvas() {
       const canvas = document.getElementById('paintCanvas');
-      if (canvas) {
-        const ctx = canvas.getContext('2d');
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
+      if (canvas) canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Word Save File Handler
+    // Word Document Handler
     function saveWordDoc() {
       const content = document.getElementById('wordEditor').innerText;
       const element = document.createElement("a");
@@ -705,7 +1003,7 @@
       document.body.removeChild(element);
     }
 
-    // Excel Dynamic Grid Generator
+    // Excel Dynamic Grid Engine
     function initExcelApp() {
       const tbody = document.getElementById('excelBody');
       if (!tbody) return;
@@ -745,7 +1043,7 @@
       tbody.appendChild(tr);
     }
 
-    // PowerPoint Presentation Switcher
+    // PowerPoint Slide Engine
     let currentSlideIndex = 0;
     const slidesData = [
       { title: "VC Computer Institute Presentation", desc: "Interactive Slide 1: Welcome to Cloud Learning Module." },
@@ -790,11 +1088,9 @@
       `;
       ledger.prepend(item);
 
-      // Clear input fields
       document.getElementById('tallyParty').value = '';
       document.getElementById('tallyAmount').value = '';
     }
   </script>
 </body>
 </html>
-```
