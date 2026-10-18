@@ -1,145 +1,691 @@
+ ```html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cloud Web OS - All-in-One Workspace</title>
+  <title>VC Computer Institute - Virtual Desktop OS</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+            }
+          }
+        }
+      }
+    }
+  </script>
   <style>
-    .window {
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    /* Custom Glassmorphism Styles */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Window Shadow & Glow Effects */
+    .os-window {
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(156, 163, 175, 0.3);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(156, 163, 175, 0.6);
+    }
+
+    /* Booting pulse glow */
+    @keyframes pulseGlow {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.6)); }
+      50% { filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.95)); }
+    }
+    .glow-effect {
+      animation: pulseGlow 3s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 h-screen overflow-hidden select-none font-sans text-white">
+<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden select-none">
 
-  <!-- Desktop Icons Grid -->
-  <div class="p-6 grid grid-cols-3 sm:grid-cols-6 gap-6 w-max">
-    <div onclick="openApp('word')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">📝</div>
-      <span class="text-xs mt-2 font-medium">MS Word</span>
+  <!-- 1. SPLASH / BOOT SCREEN (VC Computer Institute Intro) -->
+  <div id="bootScreen" class="fixed inset-0 z-[9999] bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 flex flex-col items-center justify-center p-6 text-center transition-all duration-700">
+    <div class="max-w-md w-full bg-slate-900/80 backdrop-blur-2xl border border-slate-800 p-8 rounded-3xl shadow-2xl flex flex-col items-center relative overflow-hidden">
+      
+      <!-- Top Accent Line -->
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400"></div>
+
+      <!-- Institute Logo Header -->
+      <div class="w-24 h-24 mb-6 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 p-0.5 shadow-xl glow-effect flex items-center justify-center">
+        <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
+          <i class="fa-solid fa-desktop text-4xl text-indigo-400"></i>
+        </div>
+      </div>
+
+      <h1 class="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white via-indigo-200 to-indigo-400 bg-clip-text text-transparent mb-1">
+        VC Computer Institute
+      </h1>
+      <p class="text-xs uppercase tracking-widest font-semibold text-indigo-400 mb-6">
+        Virtual Desktop Operating System
+      </p>
+
+      <!-- Included Features List -->
+      <div class="w-full bg-slate-800/80 rounded-xl p-4 text-xs text-slate-300 space-y-2.5 mb-8 border border-slate-700/50 text-left">
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>MS Word, Excel & PowerPoint Suite</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>MS Paint Studio & Full Photoshop Studio</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Tally Prime ERP & Billing Manager</span></div>
+        <div class="flex items-center space-x-3"><i class="fa-solid fa-circle-check text-emerald-400"></i> <span>Retro Arcade & HTML5 Games Engine</span></div>
+      </div>
+
+      <!-- Continue Button to Start Desktop -->
+      <button onclick="startSystem()" class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 hover:shadow-indigo-500/50 active:scale-95 transition duration-200 flex items-center justify-center space-x-3 group">
+        <span>CONTINUE TO DESKTOP</span>
+        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+      </button>
+
+      <p class="text-[11px] text-slate-500 mt-5">System Ready • Click Continue to Load OS Workspace</p>
     </div>
+  </div>
+
+  <!-- 2. DESKTOP MAIN ENVIRONMENT -->
+  <div id="desktopEnv" class="relative w-full h-full bg-cover bg-center overflow-hidden transition-all duration-500" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop');">
     
-    <div onclick="openApp('excel')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">📊</div>
-      <span class="text-xs mt-2 font-medium">MS Excel</span>
+    <!-- Background Overlay Tint -->
+    <div class="absolute inset-0 bg-slate-950/25 backdrop-brightness-95"></div>
+
+    <!-- Desktop Icons Grid -->
+    <div class="relative z-10 p-6 grid grid-flow-col grid-rows-6 gap-4 w-max h-[calc(100vh-60px)]">
+      
+      <!-- MS Word Icon -->
+      <div onclick="openApp('word')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-blue-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-file-word text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">MS Word</span>
+      </div>
+
+      <!-- MS Excel Icon -->
+      <div onclick="openApp('excel')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-emerald-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-file-excel text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">MS Excel</span>
+      </div>
+
+      <!-- PowerPoint Icon -->
+      <div onclick="openApp('ppt')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-amber-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-file-powerpoint text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">PowerPoint</span>
+      </div>
+
+      <!-- Paint Studio Icon -->
+      <div onclick="openApp('paint')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-pink-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-palette text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">MS Paint</span>
+      </div>
+
+      <!-- Photoshop Icon -->
+      <div onclick="openApp('photoshop')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-cyan-700/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-image text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Photoshop</span>
+      </div>
+
+      <!-- Tally Prime Icon -->
+      <div onclick="openApp('tally')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-yellow-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-calculator text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Tally Prime</span>
+      </div>
+
+      <!-- Arcade Games Icon -->
+      <div onclick="openApp('games')" class="flex flex-col items-center justify-center w-24 h-24 rounded-2xl hover:bg-white/10 hover:backdrop-blur-md border border-transparent hover:border-white/20 transition cursor-pointer group">
+        <div class="w-12 h-12 bg-purple-600/90 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+          <i class="fa-solid fa-gamepad text-2xl text-white"></i>
+        </div>
+        <span class="text-xs font-semibold text-white drop-shadow-md mt-2 text-center">Arcade Games</span>
+      </div>
+
     </div>
 
-    <div onclick="openApp('ppt')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">📊</div>
-      <span class="text-xs mt-2 font-medium">PowerPoint</span>
+    <!-- WINDOW CONTAINERS AREA -->
+    <div id="windowContainer" class="absolute inset-0 pb-16 pointer-events-none z-20"></div>
+
+    <!-- START MENU MODAL -->
+    <div id="startMenu" class="hidden absolute bottom-16 left-4 z-50 w-80 max-h-[480px] glass-panel rounded-2xl p-4 shadow-2xl border border-slate-700/80 animate-in fade-in slide-in-from-bottom-5 duration-200">
+      <div class="flex items-center space-x-3 pb-3 border-b border-slate-700/80">
+        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white shadow">VC</div>
+        <div>
+          <h4 class="text-sm font-bold text-white">VC Computer Institute</h4>
+          <p class="text-[10px] text-slate-400">admin@vc-institute.edu</p>
+        </div>
+      </div>
+
+      <div class="py-3">
+        <p class="text-[10px] uppercase tracking-wider font-semibold text-slate-400 mb-2 px-1">Installed Software</p>
+        <div class="space-y-1">
+          <button onclick="openApp('word'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-file-word text-blue-400 text-base w-5"></i> <span>MS Word Document Editor</span>
+          </button>
+          <button onclick="openApp('excel'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-file-excel text-emerald-400 text-base w-5"></i> <span>MS Excel Spreadsheet Grid</span>
+          </button>
+          <button onclick="openApp('ppt'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-file-powerpoint text-amber-400 text-base w-5"></i> <span>PowerPoint Presenter</span>
+          </button>
+          <button onclick="openApp('paint'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-palette text-pink-400 text-base w-5"></i> <span>MS Paint Studio</span>
+          </button>
+          <button onclick="openApp('photoshop'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-image text-cyan-400 text-base w-5"></i> <span>Photoshop Image Suite</span>
+          </button>
+          <button onclick="openApp('tally'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-calculator text-yellow-400 text-base w-5"></i> <span>Tally Prime Accounting</span>
+          </button>
+          <button onclick="openApp('games'); toggleStartMenu();" class="w-full flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-white/10 text-xs font-medium text-slate-200 text-left transition">
+            <i class="fa-solid fa-gamepad text-purple-400 text-base w-5"></i> <span>Arcade Games Hub</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="pt-3 border-t border-slate-700/80 flex items-center justify-between">
+        <button onclick="resetDesktop()" class="text-xs text-rose-400 hover:text-rose-300 font-medium flex items-center space-x-1.5 transition">
+          <i class="fa-solid fa-power-off"></i> <span>Restart System</span>
+        </button>
+        <span class="text-[10px] text-slate-500">VC OS v3.0</span>
+      </div>
     </div>
 
-    <div onclick="openApp('paint')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">🎨</div>
-      <span class="text-xs mt-2 font-medium">MS Paint</span>
-    </div>
+    <!-- TASKBAR BOTTOM -->
+    <div class="absolute bottom-0 left-0 right-0 h-14 glass-panel border-t border-slate-700/60 flex items-center justify-between px-4 z-40">
+      
+      <!-- Left Controls: Start Menu Button -->
+      <div class="flex items-center space-x-3">
+        <button onclick="toggleStartMenu()" class="h-10 px-4 bg-indigo-600/80 hover:bg-indigo-600 active:scale-95 text-white font-bold rounded-xl shadow-lg flex items-center space-x-2 transition">
+          <i class="fa-solid fa-shapes text-sm"></i>
+          <span class="text-xs tracking-wide">Start</span>
+        </button>
+      </div>
 
-    <div onclick="openApp('photoshop')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">🖼️</div>
-      <span class="text-xs mt-2 font-medium">Photoshop</span>
-    </div>
+      <!-- Middle: Running App Indicators -->
+      <div id="taskbarApps" class="flex items-center space-x-2 overflow-x-auto max-w-md px-2"></div>
 
-    <div onclick="openApp('tally')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">📑</div>
-      <span class="text-xs mt-2 font-medium">Tally App</span>
-    </div>
+      <!-- Right Controls: System Tray Clock & Settings -->
+      <div class="flex items-center space-x-4">
+        <div class="text-right">
+          <div id="clockTime" class="text-xs font-semibold text-slate-200">12:00 PM</div>
+          <div id="clockDate" class="text-[10px] text-slate-400">Oct 18, 2026</div>
+        </div>
+        <div class="h-6 w-[1px] bg-slate-700"></div>
+        <div class="flex items-center space-x-3 text-slate-300 text-xs">
+          <i class="fa-solid fa-wifi hover:text-white cursor-pointer" title="Connected"></i>
+          <i class="fa-solid fa-volume-high hover:text-white cursor-pointer" title="Volume"></i>
+          <i class="fa-solid fa-battery-full hover:text-white cursor-pointer" title="Battery 100%"></i>
+        </div>
+      </div>
 
-    <div onclick="openApp('game')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
-      <div class="text-4xl">🎮</div>
-      <span class="text-xs mt-2 font-medium">Games</span>
     </div>
-  </div>
-
-  <!-- App Window Modal -->
-  <div id="appModal" class="hidden fixed inset-10 bg-slate-800 rounded-xl border border-slate-700 flex flex-col z-50 window overflow-hidden">
-    <!-- Window Header Bar -->
-    <div class="bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-slate-700">
-      <span id="windowTitle" class="text-sm font-semibold text-slate-300">Application</span>
-      <button onclick="closeApp()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-0.5 rounded text-xs font-bold">X</button>
-    </div>
-    <!-- Window Content Area -->
-    <div id="windowContent" class="flex-1 bg-white"></div>
-  </div>
-
-  <!-- Bottom Taskbar -->
-  <div class="fixed bottom-0 left-0 right-0 h-12 bg-slate-900/80 backdrop-blur-md border-t border-slate-700 flex items-center justify-between px-4">
-    <div class="flex items-center space-x-3">
-      <button class="p-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-xs font-bold">Start</button>
-      <span class="text-xs text-slate-400">Web Desktop OS</span>
-    </div>
-    <div id="clock" class="text-xs font-mono text-slate-300">00:00</div>
   </div>
 
   <script>
-    function openApp(appName) {
-      const modal = document.getElementById('appModal');
-      const title = document.getElementById('windowTitle');
-      const content = document.getElementById('windowContent');
-      modal.classList.remove('hidden');
+    // System State Variables
+    let openWindows = {};
+    let zIndexCounter = 100;
 
-      if (appName === 'photoshop') {
-        title.innerText = 'Photoshop (Photopea)';
-        content.innerHTML = `<iframe src="https://www.photopea.com/" class="w-full h-full border-none"></iframe>`;
-      } 
-      else if (appName === 'word') {
-        title.innerText = 'Document Editor (MS Word Alternative)';
-        content.innerHTML = `<iframe src="https://docs.google.com/document/u/0/?ttof=true&nhm=true" class="w-full h-full border-none"></iframe>`;
+    // Start System Boot Function
+    function startSystem() {
+      const boot = document.getElementById('bootScreen');
+      boot.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        boot.style.display = 'none';
+      }, 700);
+      updateClock();
+    }
+
+    // Reset Desktop / Restart
+    function resetDesktop() {
+      const boot = document.getElementById('bootScreen');
+      boot.style.display = 'flex';
+      setTimeout(() => {
+        boot.classList.remove('opacity-0', 'pointer-events-none');
+      }, 50);
+      toggleStartMenu(true);
+    }
+
+    // Clock Updater
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clockTime').innerText = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('clockDate').innerText = now.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+
+    // Toggle Start Menu
+    function toggleStartMenu(forceClose = false) {
+      const menu = document.getElementById('startMenu');
+      if (forceClose || !menu.classList.contains('hidden')) {
+        menu.classList.add('hidden');
+      } else {
+        menu.classList.remove('hidden');
       }
-      else if (appName === 'excel') {
-        title.innerText = 'Spreadsheet Editor (MS Excel Alternative)';
-        content.innerHTML = `<iframe src="https://docs.google.com/spreadsheets/u/0/?ttof=true&nhm=true" class="w-full h-full border-none"></iframe>`;
+    }
+
+    // Window Management Core
+    function openApp(appId) {
+      if (openWindows[appId]) {
+        bringToFront(appId);
+        return;
       }
-      else if (appName === 'paint') {
-        title.innerText = 'MS Paint Canvas';
-        content.innerHTML = `
-          <div class="p-2 bg-slate-100 flex gap-2 border-b">
-            <input type="color" id="colorPicker" value="#000000">
-            <button onclick="clearCanvas()" class="px-2 py-1 bg-red-500 text-white text-xs rounded">Clear</button>
+
+      zIndexCounter++;
+      const container = document.getElementById('windowContainer');
+      const windowEl = document.createElement('div');
+      windowEl.id = `win_${appId}`;
+      windowEl.className = `os-window pointer-events-auto absolute glass-panel rounded-2xl border border-slate-700 flex flex-col overflow-hidden transition-all`;
+      windowEl.style.zIndex = zIndexCounter;
+
+      // Set window initial dimensions & position based on App
+      const offset = (Object.keys(openWindows).length * 25) % 150;
+      windowEl.style.top = `${40 + offset}px`;
+      windowEl.style.left = `${40 + offset}px`;
+      windowEl.style.width = '850px';
+      windowEl.style.height = '560px';
+
+      // Title & Icons lookup table
+      const appConfigs = {
+        word: { title: 'MS Word Document Editor', icon: 'fa-file-word', color: 'text-blue-400' },
+        excel: { title: 'MS Excel Spreadsheet Studio', icon: 'fa-file-excel', color: 'text-emerald-400' },
+        ppt: { title: 'PowerPoint Presentation Builder', icon: 'fa-file-powerpoint', color: 'text-amber-400' },
+        paint: { title: 'MS Paint Creative Studio', icon: 'fa-palette', color: 'text-pink-400' },
+        photoshop: { title: 'Photoshop Image Editor (Photopea)', icon: 'fa-image', color: 'text-cyan-400' },
+        tally: { title: 'Tally Prime ERP & Ledger Manager', icon: 'fa-calculator', color: 'text-yellow-400' },
+        games: { title: 'Retro Arcade Gaming Hub', icon: 'fa-gamepad', color: 'text-purple-400' }
+      };
+
+      const config = appConfigs[appId] || { title: 'Application', icon: 'fa-window-maximize', color: 'text-indigo-400' };
+
+      // Inner Window HTML Structure
+      windowEl.innerHTML = `
+        <!-- Window Header -->
+        <div id="win_header_${appId}" class="h-10 bg-slate-900/90 border-b border-slate-700/80 px-4 flex items-center justify-between cursor-move select-none">
+          <div class="flex items-center space-x-2">
+            <i class="fa-solid ${config.icon} ${config.color} text-sm"></i>
+            <span class="text-xs font-semibold text-slate-200">${config.title}</span>
           </div>
-          <canvas id="paintCanvas" class="w-full h-[calc(100%-40px)] bg-white cursor-crosshair"></canvas>
-        `;
-        setTimeout(initPaint, 100);
-      }
-      else if (appName === 'game') {
-        title.innerText = 'Retro Web Game';
-        content.innerHTML = `<iframe src="https://playcanv.as/p/2O2weA10/" class="w-full h-full border-none"></iframe>`;
-      }
-      else if (appName === 'tally') {
-        title.innerText = 'Web Tally & Accounting Suite';
-        content.innerHTML = `<div class="p-8 text-black"><h2 class="text-2xl font-bold mb-4">Accounting Dashboard</h2><p>Tally jaise ledger entries, voucher creation, aur invoice generation ke liye custom HTML/JS interface backend API se connect hota hai.</p></div>`;
+          <div class="flex items-center space-x-2">
+            <button onclick="minimizeWindow('${appId}')" class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition" title="Minimize"></button>
+            <button onclick="maximizeWindow('${appId}')" class="w-3 h-3 rounded-full bg-emerald-500 hover:bg-emerald-400 transition" title="Maximize"></button>
+            <button onclick="closeWindow('${appId}')" class="w-3 h-3 rounded-full bg-rose-500 hover:bg-rose-400 transition" title="Close"></button>
+          </div>
+        </div>
+        <!-- Window Application Content Body -->
+        <div id="win_body_${appId}" class="flex-1 bg-slate-900 overflow-hidden text-slate-800 relative">
+          ${getAppContent(appId)}
+        </div>
+      `;
+
+      windowEl.addEventListener('mousedown', () => bringToFront(appId));
+      container.appendChild(windowEl);
+
+      // Save Reference
+      openWindows[appId] = { el: windowEl, maximized: false };
+
+      // Initialize Draggable Header
+      makeDraggable(windowEl, document.getElementById(`win_header_${appId}`));
+
+      // Update Taskbar App Icon
+      updateTaskbar();
+
+      // Trigger custom initialization for canvas/grid apps
+      if (appId === 'paint') setTimeout(initPaintApp, 100);
+      if (appId === 'excel') setTimeout(initExcelApp, 100);
+    }
+
+    function bringToFront(appId) {
+      if (openWindows[appId]) {
+        zIndexCounter++;
+        openWindows[appId].el.style.zIndex = zIndexCounter;
       }
     }
 
-    function closeApp() {
-      document.getElementById('appModal').classList.add('hidden');
-      document.getElementById('windowContent').innerHTML = '';
+    function closeWindow(appId) {
+      if (openWindows[appId]) {
+        openWindows[appId].el.remove();
+        delete openWindows[appId];
+        updateTaskbar();
+      }
     }
 
-    function initPaint() {
+    function minimizeWindow(appId) {
+      if (openWindows[appId]) {
+        openWindows[appId].el.classList.add('hidden');
+      }
+    }
+
+    function maximizeWindow(appId) {
+      const win = openWindows[appId];
+      if (!win) return;
+      if (win.maximized) {
+        win.el.style.top = '50px';
+        win.el.style.left = '50px';
+        win.el.style.width = '850px';
+        win.el.style.height = '560px';
+        win.maximized = false;
+      } else {
+        win.el.style.top = '0px';
+        win.el.style.left = '0px';
+        win.el.style.width = '100vw';
+        win.el.style.height = 'calc(100vh - 56px)';
+        win.maximized = true;
+      }
+    }
+
+    function updateTaskbar() {
+      const taskbar = document.getElementById('taskbarApps');
+      taskbar.innerHTML = '';
+
+      Object.keys(openWindows).forEach(appId => {
+        const btn = document.createElement('button');
+        btn.className = `px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs text-slate-200 flex items-center space-x-2 transition`;
+        btn.innerHTML = `<span class="capitalize font-medium">${appId}</span>`;
+        btn.onclick = () => {
+          const win = openWindows[appId].el;
+          if (win.classList.contains('hidden')) {
+            win.classList.remove('hidden');
+          }
+          bringToFront(appId);
+        };
+        taskbar.appendChild(btn);
+      });
+    }
+
+    function makeDraggable(element, handle) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      handle.onmousedown = dragMouseDown;
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+
+    function getAppContent(appId) {
+      switch(appId) {
+        case 'word':
+          return `
+            <div class="h-full flex flex-col bg-slate-100 text-slate-900">
+              <div class="bg-slate-200 border-b border-slate-300 p-2 flex flex-wrap items-center gap-2 text-xs">
+                <button onclick="document.execCommand('bold')" class="p-1.5 bg-white rounded hover:bg-slate-50 font-bold px-2.5 border">B</button>
+                <button onclick="document.execCommand('italic')" class="p-1.5 bg-white rounded hover:bg-slate-50 italic px-2.5 border">I</button>
+                <button onclick="document.execCommand('underline')" class="p-1.5 bg-white rounded hover:bg-slate-50 underline px-2.5 border">U</button>
+                <div class="h-4 w-[1px] bg-slate-400"></div>
+                <button onclick="document.execCommand('justifyLeft')" class="p-1.5 bg-white rounded hover:bg-slate-50 px-2 border"><i class="fa-solid fa-align-left"></i></button>
+                <button onclick="document.execCommand('justifyCenter')" class="p-1.5 bg-white rounded hover:bg-slate-50 px-2 border"><i class="fa-solid fa-align-center"></i></button>
+                <button onclick="document.execCommand('justifyRight')" class="p-1.5 bg-white rounded hover:bg-slate-50 px-2 border"><i class="fa-solid fa-align-right"></i></button>
+                <div class="h-4 w-[1px] bg-slate-400"></div>
+                <button onclick="saveWordDoc()" class="p-1.5 bg-blue-600 text-white font-semibold rounded hover:bg-blue-500 px-3 flex items-center gap-1">
+                  <i class="fa-solid fa-download"></i> Save Document
+                </button>
+              </div>
+              <div class="flex-1 overflow-y-auto p-6 bg-slate-300 flex justify-center">
+                <div id="wordEditor" contenteditable="true" class="w-full max-w-2xl min-h-[500px] bg-white p-8 shadow-md rounded border border-slate-300 focus:outline-none text-sm text-slate-800 leading-relaxed">
+                  <h1 class="text-2xl font-bold mb-4 text-indigo-900">VC Computer Institute - Sample Document</h1>
+                  <p>Welcome to MS Word online module. You can start typing your document, formatting text, and exporting your file directly from this virtual cloud interface.</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+        case 'excel':
+          return `
+            <div class="h-full flex flex-col bg-slate-900 text-slate-100">
+              <div class="bg-slate-800 p-2 border-b border-slate-700 flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="font-bold text-emerald-400">Formula Bar:</span>
+                  <input id="excelFormula" type="text" placeholder="Select cell or type formula..." class="bg-slate-950 px-3 py-1 rounded border border-slate-700 w-80 text-xs focus:outline-none">
+                </div>
+                <button onclick="addExcelRow()" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 rounded font-semibold text-white transition">Add Row</button>
+              </div>
+              <div class="flex-1 overflow-auto">
+                <table id="excelGrid" class="w-full text-left border-collapse text-xs">
+                  <thead class="bg-slate-800 text-slate-300 border-b border-slate-700 sticky top-0">
+                    <tr>
+                      <th class="p-2 border-r border-slate-700 w-12 text-center">#</th>
+                      <th class="p-2 border-r border-slate-700 w-1/4">A (Item)</th>
+                      <th class="p-2 border-r border-slate-700 w-1/4">B (Quantity)</th>
+                      <th class="p-2 border-r border-slate-700 w-1/4">C (Price ₹)</th>
+                      <th class="p-2 border-r border-slate-700 w-1/4">D (Total ₹)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="excelBody" class="divide-y divide-slate-800">
+                    <!-- Dynamic Rows populated in JS -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          `;
+
+        case 'ppt':
+          return `
+            <div class="h-full flex flex-col bg-slate-900 text-white">
+              <div class="p-3 bg-slate-800 border-b border-slate-700 flex justify-between items-center text-xs">
+                <span class="font-bold text-amber-400">PowerPoint Slide Presenter</span>
+                <div class="space-x-2">
+                  <button onclick="prevSlide()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded transition">Previous</button>
+                  <button onclick="nextSlide()" class="px-3 py-1 bg-amber-600 hover:bg-amber-500 rounded font-bold transition">Next Slide</button>
+                </div>
+              </div>
+              <div class="flex-1 p-8 flex items-center justify-center bg-slate-950">
+                <div id="pptSlide" class="w-full max-w-xl aspect-video bg-gradient-to-br from-indigo-900 to-slate-900 border border-slate-700 rounded-2xl p-8 flex flex-col justify-center items-center text-center shadow-2xl">
+                  <h2 class="text-3xl font-extrabold text-white mb-4">VC Computer Institute Presentation</h2>
+                  <p class="text-slate-300 text-sm">Interactive Slide 1: Welcome to Cloud Learning Module.</p>
+                </div>
+              </div>
+            </div>
+          `;
+
+        case 'paint':
+          return `
+            <div class="h-full flex flex-col bg-slate-800 text-white">
+              <div class="p-2 bg-slate-900 border-b border-slate-700 flex items-center space-x-3 text-xs">
+                <label class="flex items-center space-x-1">
+                  <span>Color:</span>
+                  <input type="color" id="paintColor" value="#6366f1" class="w-6 h-6 rounded cursor-pointer">
+                </label>
+                <label class="flex items-center space-x-1">
+                  <span>Brush Size:</span>
+                  <input type="range" id="paintSize" min="1" max="30" value="5" class="w-24">
+                </label>
+                <button onclick="clearPaintCanvas()" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 rounded font-semibold text-white transition">Clear Canvas</button>
+              </div>
+              <div class="flex-1 relative bg-white overflow-hidden">
+                <canvas id="paintCanvas" class="w-full h-full cursor-crosshair"></canvas>
+              </div>
+            </div>
+          `;
+
+        case 'photoshop':
+          return `
+            <iframe src="https://www.photopea.com/" class="w-full h-full border-none"></iframe>
+          `;
+
+        case 'tally':
+          return `
+            <div class="h-full flex flex-col bg-slate-950 text-slate-200">
+              <div class="bg-yellow-600 text-slate-950 font-bold p-3 text-xs flex justify-between items-center">
+                <span>TALLY PRIME v3.0 - VC INSTITUTE ACCOUNTING ENGINE</span>
+                <span>GATEWAY OF TALLY</span>
+              </div>
+              <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 p-4 overflow-y-auto">
+                <!-- Ledger Form -->
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl space-y-3">
+                  <h3 class="text-sm font-bold text-yellow-400">Create Accounting Voucher Entry</h3>
+                  <div>
+                    <label class="text-[11px] text-slate-400">Party Account Name</label>
+                    <input id="tallyParty" type="text" placeholder="e.g. Acme Tech Corp" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-xs mt-1 text-white">
+                  </div>
+                  <div class="grid grid-cols-2 gap-2">
+                    <div>
+                      <label class="text-[11px] text-slate-400">Voucher Type</label>
+                      <select id="tallyType" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-xs mt-1 text-white">
+                        <option>Sales Voucher</option>
+                        <option>Purchase Voucher</option>
+                        <option>Payment Voucher</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label class="text-[11px] text-slate-400">Amount (₹)</label>
+                      <input id="tallyAmount" type="number" placeholder="10000" class="w-full bg-slate-950 border border-slate-700 rounded p-2 text-xs mt-1 text-white">
+                    </div>
+                  </div>
+                  <button onclick="addTallyVoucher()" class="w-full py-2 bg-yellow-600 hover:bg-yellow-500 font-bold text-slate-950 rounded text-xs transition">Post Voucher Entry</button>
+                </div>
+                
+                <!-- Ledger Summary -->
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col">
+                  <h3 class="text-sm font-bold text-slate-200 mb-3">Voucher Ledger Feed</h3>
+                  <div id="tallyLedger" class="flex-1 space-y-2 overflow-y-auto max-h-[220px] text-xs">
+                    <div class="p-2 bg-slate-950 rounded border border-slate-800 flex justify-between">
+                      <span>Opening Balance</span>
+                      <span class="text-emerald-400 font-mono font-bold">₹ 50,000</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+
+        case 'games':
+          return `
+            <div class="h-full flex flex-col bg-slate-950 text-white">
+              <div class="p-3 bg-slate-900 border-b border-slate-800 flex justify-between items-center text-xs">
+                <span class="font-bold text-purple-400">Arcade Gaming Hub</span>
+                <span class="text-slate-400">Select Game to Launch</span>
+              </div>
+              <div class="flex-1 p-4 grid grid-cols-2 gap-4 overflow-y-auto">
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center text-center hover:border-purple-500 transition">
+                  <i class="fa-solid fa-gamepad text-4xl text-purple-400 mb-2"></i>
+                  <h4 class="font-bold text-sm">3D Web Engine</h4>
+                  <p class="text-xs text-slate-400 mb-3">Interactive 3D Graphics</p>
+                  <iframe src="https://playcanv.as/p/2O2weA10/" class="w-full h-48 rounded border border-slate-800"></iframe>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center text-center hover:border-purple-500 transition">
+                  <i class="fa-solid fa-ghost text-4xl text-amber-400 mb-2"></i>
+                  <h4 class="font-bold text-sm">Classic Arcade</h4>
+                  <p class="text-xs text-slate-400 mb-3">Browser Arcade Games</p>
+                  <iframe src="https://pacman.com" class="w-full h-48 rounded border border-slate-800"></iframe>
+                </div>
+              </div>
+            </div>
+          `;
+
+        default:
+          return `<div class="p-6 text-white text-xs">Application content loading...</div>`;
+      }
+    }
+
+    // Paint App Canvas Engine
+    function initPaintApp() {
       const canvas = document.getElementById('paintCanvas');
       if (!canvas) return;
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      const ctx = canvas.getContext('2d');
-      let drawing = false;
+      canvas.width = canvas.parentElement.clientWidth;
+      canvas.height = canvas.parentElement.clientHeight;
 
-      canvas.onmousedown = () => drawing = true;
-      canvas.onmouseup = () => { drawing = false; ctx.beginPath(); };
-      canvas.onmousemove = (e) => {
-        if (!drawing) return;
+      const ctx = canvas.getContext('2d');
+      let painting = false;
+
+      function startPosition(e) {
+        painting = true;
+        draw(e);
+      }
+      function finishedPosition() {
+        painting = false;
+        ctx.beginPath();
+      }
+      function draw(e) {
+        if (!painting) return;
         const rect = canvas.getBoundingClientRect();
-        ctx.lineWidth = 3;
+        const color = document.getElementById('paintColor').value;
+        const size = document.getElementById('paintSize').value;
+
+        ctx.lineWidth = size;
         ctx.lineCap = 'round';
-        ctx.strokeStyle = document.getElementById('colorPicker').value;
+        ctx.strokeStyle = color;
+
         ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-      };
+      }
+
+      canvas.addEventListener('mousedown', startPosition);
+      canvas.addEventListener('mouseup', finishedPosition);
+      canvas.addEventListener('mousemove', draw);
     }
 
-    function clearCanvas() {
+    function clearPaintCanvas() {
       const canvas = document.getElementById('paintCanvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
@@ -147,11 +693,108 @@
       }
     }
 
-    // Clock
-    setInterval(() => {
-      const now = new Date();
-      document.getElementById('clock').innerText = now.toLocaleTimeString();
-    }, 1000);
+    // Word Save File Handler
+    function saveWordDoc() {
+      const content = document.getElementById('wordEditor').innerText;
+      const element = document.createElement("a");
+      const file = new Blob([content], {type: 'text/plain'});
+      element.href = URL.createObjectURL(file);
+      element.download = "VC_Institute_Doc.txt";
+      document.body.appendChild(element);
+      element.click();
+      document.body.removeChild(element);
+    }
+
+    // Excel Dynamic Grid Generator
+    function initExcelApp() {
+      const tbody = document.getElementById('excelBody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+      for(let i = 1; i <= 10; i++) {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/50';
+        tr.innerHTML = `
+          <td class="p-2 border-r border-slate-800 text-center text-slate-500">${i}</td>
+          <td class="p-1 border-r border-slate-800"><input type="text" value="Item ${i}" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+          <td class="p-1 border-r border-slate-800"><input type="number" id="qty_${i}" value="${i*2}" onchange="recalcExcel(${i})" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+          <td class="p-1 border-r border-slate-800"><input type="number" id="price_${i}" value="${i*50}" onchange="recalcExcel(${i})" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+          <td class="p-1 border-r border-slate-800"><input type="text" id="total_${i}" value="₹${(i*2)*(i*50)}" readonly class="w-full bg-transparent p-1 outline-none text-emerald-400 font-semibold"></td>
+        `;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function recalcExcel(rowId) {
+      const qty = parseFloat(document.getElementById(`qty_${rowId}`).value) || 0;
+      const price = parseFloat(document.getElementById(`price_${rowId}`).value) || 0;
+      document.getElementById(`total_${rowId}`).value = `₹${qty * price}`;
+    }
+
+    function addExcelRow() {
+      const tbody = document.getElementById('excelBody');
+      const count = tbody.children.length + 1;
+      const tr = document.createElement('tr');
+      tr.className = 'hover:bg-slate-800/50';
+      tr.innerHTML = `
+        <td class="p-2 border-r border-slate-800 text-center text-slate-500">${count}</td>
+        <td class="p-1 border-r border-slate-800"><input type="text" value="New Item" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+        <td class="p-1 border-r border-slate-800"><input type="number" id="qty_${count}" value="1" onchange="recalcExcel(${count})" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+        <td class="p-1 border-r border-slate-800"><input type="number" id="price_${count}" value="100" onchange="recalcExcel(${count})" class="w-full bg-transparent p-1 focus:bg-slate-800 outline-none text-slate-200"></td>
+        <td class="p-1 border-r border-slate-800"><input type="text" id="total_${count}" value="₹100" readonly class="w-full bg-transparent p-1 outline-none text-emerald-400 font-semibold"></td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    // PowerPoint Presentation Switcher
+    let currentSlideIndex = 0;
+    const slidesData = [
+      { title: "VC Computer Institute Presentation", desc: "Interactive Slide 1: Welcome to Cloud Learning Module." },
+      { title: "Module 2: Advanced Software Training", desc: "Mastering MS Word, Excel, Photoshop, and Tally Prime online." },
+      { title: "Module 3: Certification & Career Growth", desc: "Build industry-ready skills with real hands-on projects." }
+    ];
+
+    function nextSlide() {
+      currentSlideIndex = (currentSlideIndex + 1) % slidesData.length;
+      updateSlideView();
+    }
+    function prevSlide() {
+      currentSlideIndex = (currentSlideIndex - 1 + slidesData.length) % slidesData.length;
+      updateSlideView();
+    }
+    function updateSlideView() {
+      const slide = document.getElementById('pptSlide');
+      if (slide) {
+        const data = slidesData[currentSlideIndex];
+        slide.innerHTML = `
+          <h2 class="text-3xl font-extrabold text-white mb-4">${data.title}</h2>
+          <p class="text-slate-300 text-sm">${data.desc}</p>
+        `;
+      }
+    }
+
+    // Tally Voucher Engine
+    function addTallyVoucher() {
+      const party = document.getElementById('tallyParty').value || "Cash Entry";
+      const type = document.getElementById('tallyType').value;
+      const amount = document.getElementById('tallyAmount').value || "0";
+
+      const ledger = document.getElementById('tallyLedger');
+      const item = document.createElement('div');
+      item.className = "p-2 bg-slate-950 rounded border border-slate-800 flex justify-between items-center";
+      item.innerHTML = `
+        <div>
+          <span class="font-bold text-slate-200 block">${party}</span>
+          <span class="text-[10px] text-slate-500">${type}</span>
+        </div>
+        <span class="text-amber-400 font-mono font-bold">₹ ${parseFloat(amount).toLocaleString()}</span>
+      `;
+      ledger.prepend(item);
+
+      // Clear input fields
+      document.getElementById('tallyParty').value = '';
+      document.getElementById('tallyAmount').value = '';
+    }
   </script>
 </body>
 </html>
+```
