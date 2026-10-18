@@ -1,211 +1,157 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Teachers' Day - Amardeep Sir</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            text-align: center;
-            padding: 50px 20px;
-        }
-
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #1e3c72;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background-color: #ff6b6b;
-            display: block;
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Gallery Grid */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        }
-
-        .card img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .card-body {
-            padding: 15px;
-            text-align: center;
-        }
-
-        .card-body p {
-            font-size: 0.95rem;
-            color: #555;
-            font-weight: 500;
-        }
-
-        /* Wishes Section */
-        .wishes-box {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .wishes-box p {
-            font-size: 1.1rem;
-            color: #444;
-            font-style: italic;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: #1e3c72;
-            color: white;
-            margin-top: 50px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Web OS - All-in-One Workspace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .window {
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-900 h-screen overflow-hidden select-none font-sans text-white">
 
-    <header>
-        <h1>Happy Teachers' Day!</h1>
-        <p>Dedicated to our wonderful teacher — <strong>Amardeep Sir</strong></p>
-    </header>
-
-    <div class="container">
-        <h2 class="section-title">Celebration Memories</h2>
-        
-        <div class="gallery">
-            <div class="card">
-                <img src="630.jpg" alt="Amardeep Sir with Student">
-                <div class="card-body">
-                    <p>Special Moments with Amardeep Sir</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="659.jpg" alt="Cake Cutting Preparation">
-                <div class="card-body">
-                    <p>Teachers & Students Celebration</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="1409.jpg" alt="Classroom Group Photo">
-                <div class="card-body">
-                    <p>Group Photo in Classroom</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="658.jpg" alt="Students Selfie">
-                <div class="card-body">
-                    <p>Student Group Selfie</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="633.jpg" alt="Photo with Amardeep Sir">
-                <div class="card-body">
-                    <p>Memorable Moment with Sir</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="575.jpg" alt="Gift Presentation">
-                <div class="card-body">
-                    <p>Gifts & Celebrations</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="655.jpg" alt="Cake Cutting Event">
-                <div class="card-body">
-                    <p>Cake Cutting Ceremony</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="628.jpg" alt="Amardeep Sir & Student">
-                <div class="card-body">
-                    <p>Celebration at School</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="645.jpg" alt="Classroom Gathering">
-                <div class="card-body">
-                    <p>Enjoying Teachers' Day Together</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="wishes-box">
-            <h3>A Special Message for Amardeep Sir</h3>
-            <p>"Thank you Amardeep Sir for being a great teacher, mentor, and guide. Happy Teachers' Day!"</p>
-        </div>
+  <!-- Desktop Icons Grid -->
+  <div class="p-6 grid grid-cols-3 sm:grid-cols-6 gap-6 w-max">
+    <div onclick="openApp('word')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">📝</div>
+      <span class="text-xs mt-2 font-medium">MS Word</span>
+    </div>
+    
+    <div onclick="openApp('excel')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">📊</div>
+      <span class="text-xs mt-2 font-medium">MS Excel</span>
     </div>
 
-    <footer>
-        <p>Created with ❤️ by Students for Amardeep Sir</p>
-    </footer>
+    <div onclick="openApp('ppt')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">📊</div>
+      <span class="text-xs mt-2 font-medium">PowerPoint</span>
+    </div>
 
+    <div onclick="openApp('paint')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">🎨</div>
+      <span class="text-xs mt-2 font-medium">MS Paint</span>
+    </div>
+
+    <div onclick="openApp('photoshop')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">🖼️</div>
+      <span class="text-xs mt-2 font-medium">Photoshop</span>
+    </div>
+
+    <div onclick="openApp('tally')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">📑</div>
+      <span class="text-xs mt-2 font-medium">Tally App</span>
+    </div>
+
+    <div onclick="openApp('game')" class="flex flex-col items-center cursor-pointer hover:bg-white/10 p-3 rounded-xl transition">
+      <div class="text-4xl">🎮</div>
+      <span class="text-xs mt-2 font-medium">Games</span>
+    </div>
+  </div>
+
+  <!-- App Window Modal -->
+  <div id="appModal" class="hidden fixed inset-10 bg-slate-800 rounded-xl border border-slate-700 flex flex-col z-50 window overflow-hidden">
+    <!-- Window Header Bar -->
+    <div class="bg-slate-900 px-4 py-2 flex justify-between items-center border-b border-slate-700">
+      <span id="windowTitle" class="text-sm font-semibold text-slate-300">Application</span>
+      <button onclick="closeApp()" class="bg-red-500 hover:bg-red-600 text-white px-3 py-0.5 rounded text-xs font-bold">X</button>
+    </div>
+    <!-- Window Content Area -->
+    <div id="windowContent" class="flex-1 bg-white"></div>
+  </div>
+
+  <!-- Bottom Taskbar -->
+  <div class="fixed bottom-0 left-0 right-0 h-12 bg-slate-900/80 backdrop-blur-md border-t border-slate-700 flex items-center justify-between px-4">
+    <div class="flex items-center space-x-3">
+      <button class="p-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-xs font-bold">Start</button>
+      <span class="text-xs text-slate-400">Web Desktop OS</span>
+    </div>
+    <div id="clock" class="text-xs font-mono text-slate-300">00:00</div>
+  </div>
+
+  <script>
+    function openApp(appName) {
+      const modal = document.getElementById('appModal');
+      const title = document.getElementById('windowTitle');
+      const content = document.getElementById('windowContent');
+      modal.classList.remove('hidden');
+
+      if (appName === 'photoshop') {
+        title.innerText = 'Photoshop (Photopea)';
+        content.innerHTML = `<iframe src="https://www.photopea.com/" class="w-full h-full border-none"></iframe>`;
+      } 
+      else if (appName === 'word') {
+        title.innerText = 'Document Editor (MS Word Alternative)';
+        content.innerHTML = `<iframe src="https://docs.google.com/document/u/0/?ttof=true&nhm=true" class="w-full h-full border-none"></iframe>`;
+      }
+      else if (appName === 'excel') {
+        title.innerText = 'Spreadsheet Editor (MS Excel Alternative)';
+        content.innerHTML = `<iframe src="https://docs.google.com/spreadsheets/u/0/?ttof=true&nhm=true" class="w-full h-full border-none"></iframe>`;
+      }
+      else if (appName === 'paint') {
+        title.innerText = 'MS Paint Canvas';
+        content.innerHTML = `
+          <div class="p-2 bg-slate-100 flex gap-2 border-b">
+            <input type="color" id="colorPicker" value="#000000">
+            <button onclick="clearCanvas()" class="px-2 py-1 bg-red-500 text-white text-xs rounded">Clear</button>
+          </div>
+          <canvas id="paintCanvas" class="w-full h-[calc(100%-40px)] bg-white cursor-crosshair"></canvas>
+        `;
+        setTimeout(initPaint, 100);
+      }
+      else if (appName === 'game') {
+        title.innerText = 'Retro Web Game';
+        content.innerHTML = `<iframe src="https://playcanv.as/p/2O2weA10/" class="w-full h-full border-none"></iframe>`;
+      }
+      else if (appName === 'tally') {
+        title.innerText = 'Web Tally & Accounting Suite';
+        content.innerHTML = `<div class="p-8 text-black"><h2 class="text-2xl font-bold mb-4">Accounting Dashboard</h2><p>Tally jaise ledger entries, voucher creation, aur invoice generation ke liye custom HTML/JS interface backend API se connect hota hai.</p></div>`;
+      }
+    }
+
+    function closeApp() {
+      document.getElementById('appModal').classList.add('hidden');
+      document.getElementById('windowContent').innerHTML = '';
+    }
+
+    function initPaint() {
+      const canvas = document.getElementById('paintCanvas');
+      if (!canvas) return;
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+      const ctx = canvas.getContext('2d');
+      let drawing = false;
+
+      canvas.onmousedown = () => drawing = true;
+      canvas.onmouseup = () => { drawing = false; ctx.beginPath(); };
+      canvas.onmousemove = (e) => {
+        if (!drawing) return;
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineWidth = 3;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = document.getElementById('colorPicker').value;
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      };
+    }
+
+    function clearCanvas() {
+      const canvas = document.getElementById('paintCanvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    // Clock
+    setInterval(() => {
+      const now = new Date();
+      document.getElementById('clock').innerText = now.toLocaleTimeString();
+    }, 1000);
+  </script>
 </body>
 </html>
